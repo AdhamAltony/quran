@@ -165,12 +165,12 @@ function Navbar() {
           <div className="flex items-center justify-between min-h-[4.5rem] sm:min-h-20 gap-4">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-cyan-500/30 group-hover:shadow-cyan-500/50 transition-shadow shrink-0 icon-ring">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:shadow-emerald-500/50 transition-shadow shrink-0 icon-ring">
                 <span className="text-white text-xl font-bold leading-none">ن</span>
               </div>
               <div className="flex flex-col min-w-0">
                 <span className="text-white font-bold text-base sm:text-lg leading-normal whitespace-nowrap truncate">أكاديمية النور</span>
-                <span className="hidden sm:block text-cyan-200/80 text-xs leading-normal">Al-Noor Academy</span>
+                <span className="hidden sm:block text-emerald-200/80 text-xs leading-normal">Al-Noor Academy</span>
               </div>
             </Link>
 
@@ -180,7 +180,7 @@ function Navbar() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="text-cyan-50/90 hover:text-white text-sm font-medium transition-colors whitespace-nowrap py-2 relative after:absolute after:bottom-0 after:right-0 after:w-0 after:h-0.5 after:bg-cyan-300 after:transition-all hover:after:w-full"
+                  className="text-emerald-50/90 hover:text-white text-sm font-medium transition-colors whitespace-nowrap py-2 relative after:absolute after:bottom-0 after:right-0 after:w-0 after:h-0.5 after:bg-emerald-300 after:transition-all hover:after:w-full"
                 >
                   {item.label}
                 </Link>
@@ -189,10 +189,10 @@ function Navbar() {
 
             {/* CTA Buttons */}
             <div className="flex items-center gap-2 sm:gap-4 shrink-0">
-              <Link href="/login" className="hidden sm:inline-flex items-center justify-center text-cyan-50/90 hover:text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors hover:bg-white/10 whitespace-nowrap">
+              <Link href="/login" className="hidden sm:inline-flex items-center justify-center text-emerald-50/90 hover:text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors hover:bg-white/10 whitespace-nowrap">
                 تسجيل الدخول
               </Link>
-              <Link href="/register" className="glow-button inline-flex items-center justify-center bg-gradient-to-l from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-white text-xs sm:text-sm font-bold px-4 sm:px-7 py-2.5 sm:py-3 rounded-lg sm:rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/45 hover:-translate-y-0.5 whitespace-nowrap">
+              <Link href="/register" className="glow-button inline-flex items-center justify-center bg-gradient-to-l from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white text-xs sm:text-sm font-bold px-4 sm:px-7 py-2.5 sm:py-3 rounded-lg sm:rounded-xl transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/45 hover:-translate-y-0.5 whitespace-nowrap">
                 ابدأ الآن
               </Link>
             </div>
@@ -209,16 +209,16 @@ function HeroSection() {
   return (
     <section id="hero" className="relative isolate min-h-screen flex items-center justify-center overflow-hidden bg-[var(--ink-950)]">
       {/* Background layers */}
-      <div className="absolute inset-0 bg-gradient-to-bl from-[#020818] via-[#082843] to-[#041322] animate-gradient" />
+      <div className="absolute inset-0 bg-gradient-to-bl from-[#021a24] via-[#0a364a] to-[#052836] animate-gradient" />
       <div className="absolute inset-0 geometric-pattern opacity-50" />
       <div className="hero-wash" />
       <div className="hero-wash secondary" />
       <div className="hero-mesh" />
 
       {/* Decorative orbs */}
-      <div className="hidden sm:block absolute top-20 left-20 w-72 h-72 bg-cyan-400/20 rounded-full blur-3xl animate-float" />
+      <div className="hidden sm:block absolute top-20 left-20 w-72 h-72 bg-emerald-400/20 rounded-full blur-3xl animate-float" />
       <div className="hidden md:block absolute bottom-20 right-20 w-96 h-96 bg-emerald-400/20 rounded-full blur-3xl animate-float-delayed" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] sm:w-[520px] sm:h-[520px] lg:w-[620px] lg:h-[620px] bg-cyan-300/15 rounded-full blur-3xl animate-float-soft" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] sm:w-[520px] sm:h-[520px] lg:w-[620px] lg:h-[620px] bg-emerald-300/15 rounded-full blur-3xl animate-float-soft" />
 
       {/* Geometric decorations */}
       <div className="hidden lg:block absolute top-32 left-10 w-20 h-20 border border-emerald-500/20 rounded-2xl rotate-45 animate-spin-slow" />
@@ -228,9 +228,9 @@ function HeroSection() {
         <div className="grid items-center gap-10 lg:gap-14 lg:grid-cols-2">
           <div className="text-center lg:text-right">
             {/* Badge */}
-            <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full glass ring-1 ring-cyan-100/20 shadow-xl shadow-cyan-950/40 mb-8 animate-fade-in-up">
-              <span className="w-2.5 h-2.5 bg-cyan-200 rounded-full animate-pulse" />
-              <span className="text-cyan-100 text-sm font-medium leading-normal">
+            <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full glass ring-1 ring-emerald-100/20 shadow-xl shadow-emerald-950/40 mb-8 animate-fade-in-up">
+              <span className="w-2.5 h-2.5 bg-emerald-200 rounded-full animate-pulse" />
+              <span className="text-emerald-100 text-sm font-medium leading-normal">
                 منصة تعليمية متكاملة لتعلم القرآن الكريم
               </span>
             </div>
@@ -239,13 +239,13 @@ function HeroSection() {
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white mb-7 animate-fade-in-up" style={{ animationDelay: "0.1s", lineHeight: 1.3 }}>
               رحلتك مع
               <span className="block gradient-text mt-3">القرآن الكريم</span>
-              <span className="block text-2xl sm:text-4xl lg:text-5xl font-bold text-cyan-50 mt-4" style={{ lineHeight: 1.45 }}>
+              <span className="block text-2xl sm:text-4xl lg:text-5xl font-bold text-emerald-50 mt-4" style={{ lineHeight: 1.45 }}>
                 تبدأ من هنا
               </span>
             </h1>
 
             {/* Description */}
-            <p className="max-w-2xl lg:max-w-xl mx-auto lg:mx-0 text-lg sm:text-xl text-cyan-100/85 mb-8 animate-fade-in-up leading-relaxed" style={{ animationDelay: "0.2s" }}>
+            <p className="max-w-2xl lg:max-w-xl mx-auto lg:mx-0 text-lg sm:text-xl text-emerald-100/85 mb-8 animate-fade-in-up leading-relaxed" style={{ animationDelay: "0.2s" }}>
               تعلّم القرآن الكريم مع نخبة من المعلمين المتخصصين عبر جلسات تفاعلية
               مباشرة، في أي وقت ومن أي مكان
             </p>
@@ -260,13 +260,13 @@ function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center lg:items-stretch justify-center lg:justify-start gap-4 mb-14 animate-fade-in-up w-full" style={{ animationDelay: "0.3s" }}>
-              <Link href="/register" className="glow-button group inline-flex items-center justify-center gap-4 w-full sm:w-auto bg-gradient-to-l from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-[#042034] font-black px-8 sm:px-10 py-4 sm:py-5 rounded-2xl transition-all shadow-2xl shadow-cyan-500/35 hover:shadow-cyan-400/55 hover:-translate-y-1 text-base sm:text-lg whitespace-nowrap">
+              <Link href="/register" className="glow-button group inline-flex items-center justify-center gap-4 w-full sm:w-auto bg-gradient-to-l from-emerald-300 to-emerald-400 hover:from-emerald-200 hover:to-emerald-300 text-[#083946] font-black px-8 sm:px-10 py-4 sm:py-5 rounded-2xl transition-all shadow-2xl shadow-emerald-500/35 hover:shadow-emerald-400/55 hover:-translate-y-1 text-base sm:text-lg whitespace-nowrap">
                 <span>احجز حصتك المجانية</span>
-                <span className="w-11 h-11 bg-[#05253d]/15 rounded-xl flex items-center justify-center group-hover:bg-[#05253d]/25 transition-colors shrink-0">
-                  <PlayIcon className="w-5 h-5 text-[#042034]" />
+                <span className="w-11 h-11 bg-[#0d4555]/15 rounded-xl flex items-center justify-center group-hover:bg-[#0d4555]/25 transition-colors shrink-0">
+                  <PlayIcon className="w-5 h-5 text-[#083946]" />
                 </span>
               </Link>
-              <Link href="#services" className="inline-flex items-center justify-center gap-3 w-full sm:w-auto glass border border-cyan-300/30 text-cyan-50 font-medium px-8 sm:px-9 py-4 sm:py-5 rounded-2xl hover:bg-white/15 transition-all whitespace-nowrap">
+              <Link href="#services" className="inline-flex items-center justify-center gap-3 w-full sm:w-auto glass border border-emerald-300/30 text-emerald-50 font-medium px-8 sm:px-9 py-4 sm:py-5 rounded-2xl hover:bg-white/15 transition-all whitespace-nowrap">
                 <span>تعرّف على برامجنا</span>
                 <ChevronDownIcon className="w-5 h-5" />
               </Link>
@@ -284,7 +284,7 @@ function HeroSection() {
                   <div className="text-2xl sm:text-3xl font-black text-white leading-normal">
                     {stat.number}
                   </div>
-                  <div className="text-cyan-100/80 text-sm mt-2 leading-normal">{stat.label}</div>
+                  <div className="text-emerald-100/80 text-sm mt-2 leading-normal">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -297,19 +297,19 @@ function HeroSection() {
                 ))}
               </div>
               <span className="text-white font-bold text-sm leading-normal">٤.٩</span>
-              <span className="text-cyan-100/65 text-sm leading-normal">من ٥ | +٢٠٠٠ تقييم</span>
+              <span className="text-emerald-100/65 text-sm leading-normal">من ٥ | +٢٠٠٠ تقييم</span>
             </div>
           </div>
 
           <div className="relative max-w-lg mx-auto w-full animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
             <div className="hero-card rounded-3xl p-7 sm:p-9">
-              <span className="inline-flex items-center gap-2 text-cyan-100/90 text-sm font-medium">
+              <span className="inline-flex items-center gap-2 text-emerald-100/90 text-sm font-medium">
                 <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
                 خطة تعليم مخصصة لك
               </span>
               <h3 className="text-2xl sm:text-3xl font-black text-white mt-3 mb-5 leading-snug">
                 تعلّم، احفظ، وارتقِ
-                <span className="block text-cyan-200">بإشراف معلمين متخصصين</span>
+                <span className="block text-emerald-200">بإشراف معلمين متخصصين</span>
               </h3>
 
               <ul className="space-y-4">
@@ -320,15 +320,15 @@ function HeroSection() {
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <CheckCircleIcon className="w-5 h-5 text-emerald-300 shrink-0 mt-0.5" />
-                    <span className="text-cyan-50/90 text-sm sm:text-base leading-relaxed">
+                    <span className="text-emerald-50/90 text-sm sm:text-base leading-relaxed">
                       {item}
                     </span>
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-8 rounded-2xl border border-cyan-200/25 bg-cyan-200/10 px-5 py-4">
-                <p className="text-cyan-50 text-sm sm:text-base font-medium leading-relaxed">
+              <div className="mt-8 rounded-2xl border border-emerald-200/25 bg-emerald-200/10 px-5 py-4">
+                <p className="text-emerald-50 text-sm sm:text-base font-medium leading-relaxed">
                   حصة تجريبية مجانية لمدة ٣٠ دقيقة مع تقييم فوري وخطة متابعة.
                 </p>
               </div>
@@ -341,7 +341,7 @@ function HeroSection() {
       </div>
 
       {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f3f8f7] to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f0f8f8] to-transparent" />
     </section>
   );
 }
@@ -354,7 +354,7 @@ function FeaturesSection() {
       icon: <VideoCameraIcon className="w-7 h-7" />,
       title: "دروس تحفيظ بالفيديو",
       description: "دروس فيديو تفاعلية للمبتدئين لحفظ القرآن الكريم خطوة بخطوة مع متابعة مستمرة",
-      color: "from-emerald-500 to-teal-600",
+      color: "from-emerald-500 to-emerald-700",
       shadowColor: "shadow-emerald-500/20",
       href: "/tahfeez",
     },
@@ -362,55 +362,55 @@ function FeaturesSection() {
       icon: <BookOpenIcon className="w-7 h-7" />,
       title: "دروس أونلاين تجريبية",
       description: "جلسات تعليمية مباشرة عبر الإنترنت مع معلمين متخصصين - جرّب حصة مجانية الآن",
-      color: "from-blue-500 to-indigo-600",
-      shadowColor: "shadow-blue-500/20",
+      color: "from-emerald-500 to-emerald-700",
+      shadowColor: "shadow-emerald-500/20",
       href: "/online-lessons",
     },
     {
       icon: <LanguageIcon className="w-7 h-7" />,
       title: "تعليم اللغة العربية",
       description: "برنامج متكامل لتعليم اللغة العربية لغير الناطقين بها من الصفر حتى الإتقان",
-      color: "from-amber-500 to-orange-600",
-      shadowColor: "shadow-amber-500/20",
+      color: "from-emerald-500 to-emerald-700",
+      shadowColor: "shadow-emerald-500/20",
       href: "/arabic-language",
     },
     {
       icon: <ChatIcon className="w-7 h-7" />,
       title: "خدمة المحادثة مع الطلاب",
       description: "تواصل مباشر مع المعلمين والطلاب عبر نظام محادثة متطور للإجابة على استفساراتك",
-      color: "from-purple-500 to-violet-600",
-      shadowColor: "shadow-purple-500/20",
+      color: "from-emerald-500 to-emerald-700",
+      shadowColor: "shadow-emerald-500/20",
       href: "/chat",
     },
     {
       icon: <MicrophoneIcon className="w-7 h-7" />,
       title: "التجويد والتلاوة",
       description: "تعلّم أحكام التجويد من الأساسيات حتى الإتقان مع تطبيق عملي مباشر",
-      color: "from-rose-500 to-pink-600",
-      shadowColor: "shadow-rose-500/20",
+      color: "from-emerald-500 to-emerald-700",
+      shadowColor: "shadow-emerald-500/20",
       href: "/tajweed",
     },
     {
       icon: <SparklesIcon className="w-7 h-7" />,
       title: "التفسير والفهم",
       description: "فهم معاني الآيات وأسباب النزول والدروس المستفادة مع أمثلة معاصرة",
-      color: "from-cyan-500 to-teal-600",
-      shadowColor: "shadow-cyan-500/20",
+      color: "from-emerald-500 to-emerald-700",
+      shadowColor: "shadow-emerald-500/20",
       href: "/tafseer",
     },
   ];
 
   return (
-    <section className="section-spacing bg-gradient-to-b from-[#f4fbfb] via-[#f7fbfa] to-[#eef6f4] relative overflow-hidden" id="services">
-      <div className="absolute -top-28 right-0 w-[380px] h-[380px] bg-cyan-300/25 rounded-full blur-3xl animate-float-soft" />
+    <section className="section-spacing bg-gradient-to-b from-[#f1f9f9] via-[#f5fbfb] to-[#ecf5f4] relative overflow-hidden" id="services">
+      <div className="absolute -top-28 right-0 w-[380px] h-[380px] bg-emerald-300/25 rounded-full blur-3xl animate-float-soft" />
       <div className="site-container">
         {/* Section Header */}
         <div className="text-center mb-14 sm:mb-20 animate-fade-in-up">
-          <span className="inline-block text-cyan-700 font-bold text-sm bg-cyan-100 px-5 py-2 rounded-full mb-5">
+          <span className="inline-block text-emerald-700 font-bold text-sm bg-emerald-100 px-5 py-2 rounded-full mb-5">
             خدماتنا
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#09263e] mb-5" style={{ lineHeight: 1.4 }}>
-            كل ما تحتاجه في <span className="text-cyan-600">مكان واحد</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-emerald-950 mb-5" style={{ lineHeight: 1.4 }}>
+            كل ما تحتاجه في <span className="text-emerald-600">مكان واحد</span>
           </h2>
           <p className="text-slate-700 max-w-2xl mx-auto text-lg leading-relaxed">
             نقدم مجموعة شاملة من البرامج التعليمية المصممة لتناسب جميع المستويات والأعمار
@@ -432,13 +432,13 @@ function FeaturesSection() {
               <div className={`relative w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg ${feature.shadowColor} group-hover:scale-105 transition-transform`}>
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold text-[#07263d] mb-3 leading-normal">
+              <h3 className="text-xl font-bold text-emerald-950 mb-3 leading-normal">
                 {feature.title}
               </h3>
               <p className="text-slate-700 leading-relaxed text-base">
                 {feature.description}
               </p>
-              <div className="mt-6 text-cyan-700 font-medium text-sm flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5">
+              <div className="mt-6 text-emerald-700 font-medium text-sm flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5">
                 <span>اكتشف المزيد</span>
                 <svg className="w-4 h-4 rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -510,19 +510,19 @@ function ProgramsSection() {
     <section className="section-spacing bg-[var(--ink-950)] relative overflow-hidden" id="programs">
       <div className="aurora-bg" />
       <div className="absolute inset-0 geometric-pattern" />
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl animate-float-soft" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl animate-float-soft" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl animate-float-delayed" />
 
       <div className="site-container relative z-10">
         {/* Section Header */}
         <div className="text-center mb-14 sm:mb-20 animate-fade-in-up">
-          <span className="inline-block text-cyan-200 font-bold text-sm bg-cyan-500/10 border border-cyan-400/20 px-5 py-2 rounded-full mb-5">
+          <span className="inline-block text-emerald-200 font-bold text-sm bg-emerald-500/10 border border-emerald-400/20 px-5 py-2 rounded-full mb-5">
             باقاتنا
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-5" style={{ lineHeight: 1.4 }}>
             اختر البرنامج <span className="gradient-text">المناسب لك</span>
           </h2>
-          <p className="text-cyan-100/85 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="text-emerald-100/85 max-w-2xl mx-auto text-lg leading-relaxed">
             برامج مرنة مصممة لتناسب احتياجاتك وجدولك الزمني
           </p>
         </div>
@@ -534,14 +534,14 @@ function ProgramsSection() {
               key={program.name}
               className={`relative rounded-3xl overflow-hidden transition-all duration-500 animate-fade-in-up ${
                 program.popular
-                  ? "modern-card bg-white/95 scale-100 md:scale-105 shadow-[0_30px_60px_-20px_rgba(34,211,238,0.5)]"
-                  : "glass border border-cyan-400/20 hover:bg-white/12 hover:-translate-y-1 shadow-[0_25px_50px_-24px_rgba(4,16,31,0.9)]"
+                  ? "modern-card bg-white/95 scale-100 md:scale-105 shadow-[0_30px_60px_-20px_rgba(16,185,129,0.45)]"
+                  : "glass border border-emerald-400/20 hover:bg-white/12 hover:-translate-y-1 shadow-[0_25px_50px_-24px_rgba(4,16,31,0.9)]"
               }`}
               style={{ animationDelay: `${0.1 * idx}s` }}
             >
               {/* Popular badge */}
               {program.popular && (
-                <div className="absolute top-0 left-0 right-0 bg-gradient-to-l from-cyan-300 to-gold-400 text-[#082136] text-center py-2 text-sm font-bold">
+                <div className="absolute top-0 left-0 right-0 bg-gradient-to-l from-emerald-300 to-gold-400 text-emerald-950 text-center py-2 text-sm font-bold">
                   ⭐ الأكثر طلباً
                 </div>
               )}
@@ -553,7 +553,7 @@ function ProgramsSection() {
                   <h3 className={`text-2xl font-bold mb-2 leading-normal ${program.popular ? "text-emerald-950" : "text-white"}`}>
                     {program.name}
                   </h3>
-                  <p className={`text-sm leading-normal ${program.popular ? "text-slate-700" : "text-cyan-100/90"}`}>
+                  <p className={`text-sm leading-normal ${program.popular ? "text-slate-700" : "text-emerald-100/90"}`}>
                     {program.subtitle}
                   </p>
                 </div>
@@ -561,10 +561,10 @@ function ProgramsSection() {
                 {/* Price */}
                 <div className="text-center mb-10">
                   <div className="flex items-baseline justify-center gap-2">
-                    <span className={`text-5xl font-black leading-normal ${program.popular ? "text-emerald-700" : "text-white"}`}>
+                    <span className={`text-5xl font-black leading-normal ${program.popular ? "text-emerald-800" : "text-white"}`}>
                       {program.price}
                     </span>
-                    <span className={`text-lg leading-normal ${program.popular ? "text-slate-600" : "text-cyan-100/90"}`}>
+                    <span className={`text-lg leading-normal ${program.popular ? "text-slate-600" : "text-emerald-100/90"}`}>
                       ج.م / {program.period}
                     </span>
                   </div>
@@ -574,8 +574,8 @@ function ProgramsSection() {
                 <ul className="space-y-4 mb-10">
                   {program.features.map((feature) => (
                     <li key={feature} className="flex items-center gap-3">
-                      <CheckCircleIcon className={`w-5 h-5 shrink-0 ${program.popular ? "text-emerald-500" : "text-cyan-300"}`} />
-                      <span className={`text-sm leading-normal ${program.popular ? "text-slate-700" : "text-cyan-100/95"}`}>
+                      <CheckCircleIcon className={`w-5 h-5 shrink-0 ${program.popular ? "text-emerald-500" : "text-emerald-300"}`} />
+                      <span className={`text-sm leading-normal ${program.popular ? "text-slate-700" : "text-emerald-100/95"}`}>
                         {feature}
                       </span>
                     </li>
@@ -587,8 +587,8 @@ function ProgramsSection() {
                   href="/register"
                   className={`glow-button block w-full py-4.5 rounded-2xl font-bold text-lg transition-all hover:-translate-y-0.5 text-center leading-normal ${
                     program.popular
-                      ? "bg-gradient-to-l from-cyan-500 to-emerald-500 text-white shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50"
-                      : "glass text-white hover:bg-white/15 border border-cyan-300/20"
+                      ? "bg-gradient-to-l from-emerald-500 to-emerald-500 text-white shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50"
+                      : "glass text-white hover:bg-white/15 border border-emerald-300/20"
                   }`}
                   style={{ paddingTop: "1.125rem", paddingBottom: "1.125rem" }}
                 >
@@ -600,7 +600,7 @@ function ProgramsSection() {
         </div>
 
         {/* Trial note */}
-        <p className="text-center text-cyan-100/80 mt-8 text-sm">
+        <p className="text-center text-emerald-100/80 mt-8 text-sm">
           جميع الباقات تشمل حصة تجريبية مجانية • إمكانية الإلغاء في أي وقت
         </p>
       </div>
@@ -635,19 +635,19 @@ function WhyChooseUsSection() {
   ];
 
   return (
-    <section className="section-spacing bg-gradient-to-b from-[#f7fbfb] via-[#f7faf8] to-[#eef6f2] relative overflow-hidden" id="about">
+    <section className="section-spacing bg-gradient-to-b from-[#f2f9f9] via-[#f4f8f8] to-[#ecf4f4] relative overflow-hidden" id="about">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-200/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-200/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
       <div className="site-container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Text side */}
           <div>
-            <span className="inline-block text-cyan-700 font-bold text-sm bg-cyan-100 px-5 py-2 rounded-full mb-5 animate-fade-in-up">
+            <span className="inline-block text-emerald-700 font-bold text-sm bg-emerald-100 px-5 py-2 rounded-full mb-5 animate-fade-in-up">
               لماذا نحن؟
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#08243a] mb-6 animate-fade-in-up" style={{ lineHeight: 1.4 }}>
-              نبني جيلاً يحمل <span className="text-cyan-600">نور القرآن</span>
+            <h2 className="text-3xl sm:text-4xl font-black text-emerald-950 mb-6 animate-fade-in-up" style={{ lineHeight: 1.4 }}>
+              نبني جيلاً يحمل <span className="text-emerald-600">نور القرآن</span>
             </h2>
             <p className="text-slate-700 text-lg mb-12 leading-relaxed animate-fade-in-up stagger-1">
               نؤمن بأن تعلّم القرآن الكريم حق لكل مسلم، لذا نسعى لتقديم أفضل
@@ -657,11 +657,11 @@ function WhyChooseUsSection() {
             <div className="space-y-8">
               {reasons.map((reason, idx) => (
                 <div key={reason.title} className="flex gap-5 group items-start animate-fade-in-up" style={{ animationDelay: `${0.1 + idx * 0.08}s` }}>
-                  <div className="w-16 h-16 shrink-0 bg-white/85 border border-cyan-100 rounded-2xl shadow-lg shadow-cyan-500/10 flex items-center justify-center text-cyan-700 group-hover:bg-cyan-600 group-hover:text-white group-hover:-translate-y-1 transition-all duration-300">
+                  <div className="w-16 h-16 shrink-0 bg-white/85 border border-emerald-100 rounded-2xl shadow-lg shadow-emerald-500/10 flex items-center justify-center text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white group-hover:-translate-y-1 transition-all duration-300">
                     {reason.icon}
                   </div>
                   <div className="pt-1">
-                    <h3 className="text-lg font-bold text-[#08243a] mb-2 leading-normal">
+                    <h3 className="text-lg font-bold text-emerald-950 mb-2 leading-normal">
                       {reason.title}
                     </h3>
                     <p className="text-slate-700 text-sm leading-relaxed">
@@ -675,15 +675,15 @@ function WhyChooseUsSection() {
 
           {/* Visual side - Quranic verse card */}
           <div className="relative">
-            <div className="relative bg-gradient-to-br from-[#06324e] via-[#0a4767] to-[#07273f] rounded-3xl p-10 shadow-2xl overflow-hidden animate-fade-in-up">
+            <div className="relative bg-gradient-to-br from-[#0a3a4f] via-[#0f5f78] to-[#093648] rounded-3xl p-10 shadow-2xl overflow-hidden animate-fade-in-up">
               <div className="absolute inset-0 geometric-pattern" />
               <div className="aurora-bg" />
               <div className="absolute -top-20 -left-20 w-40 h-40 bg-gold-500/20 rounded-full blur-2xl" />
-              <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-cyan-300/20 rounded-full blur-2xl" />
+              <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-emerald-300/20 rounded-full blur-2xl" />
 
               <div className="relative text-center">
                 <div className="text-6xl mb-6">🕌</div>
-                <p className="text-cyan-100/90 text-lg leading-loose mb-8 font-medium" style={{ fontFamily: "serif" }}>
+                <p className="text-emerald-100/90 text-lg leading-loose mb-8 font-medium" style={{ fontFamily: "serif" }}>
                   بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
                 </p>
                 <p className="text-2xl md:text-3xl text-white leading-loose font-medium mb-4" style={{ lineHeight: 2 }}>
@@ -695,12 +695,12 @@ function WhyChooseUsSection() {
               </div>
 
               {/* Decorative border */}
-              <div className="absolute top-4 right-4 left-4 bottom-4 border border-cyan-300/25 rounded-2xl pointer-events-none" />
+              <div className="absolute top-4 right-4 left-4 bottom-4 border border-emerald-300/25 rounded-2xl pointer-events-none" />
             </div>
 
             {/* Floating accent elements */}
             <div className="absolute -top-4 -right-4 w-20 h-20 bg-gold-400 rounded-2xl opacity-25 rotate-12 animate-float" />
-            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-cyan-400 rounded-full opacity-20 animate-float-delayed" />
+            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-emerald-400 rounded-full opacity-20 animate-float-delayed" />
           </div>
         </div>
       </div>
@@ -736,14 +736,14 @@ function TestimonialsSection() {
   ];
 
   return (
-    <section className="section-spacing bg-gradient-to-b from-[#eef8f7] via-[#f4fbfa] to-[#f9fbfb] relative overflow-hidden">
+    <section className="section-spacing bg-gradient-to-b from-[#eef6f5] via-[#f3f8f8] to-[#f8fbfb] relative overflow-hidden">
       <div className="site-container">
         <div className="text-center mb-14 sm:mb-20 animate-fade-in-up">
-          <span className="inline-block text-cyan-700 font-bold text-sm bg-cyan-100 px-5 py-2 rounded-full mb-5">
+          <span className="inline-block text-emerald-700 font-bold text-sm bg-emerald-100 px-5 py-2 rounded-full mb-5">
             آراء طلابنا
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#08263e] mb-5" style={{ lineHeight: 1.4 }}>
-            ماذا يقول <span className="text-cyan-600">طلابنا</span> عنا
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-emerald-950 mb-5" style={{ lineHeight: 1.4 }}>
+            ماذا يقول <span className="text-emerald-600">طلابنا</span> عنا
           </h2>
           <p className="text-slate-700 max-w-2xl mx-auto text-lg leading-relaxed">
             نفخر بثقة آلاف الطلاب وأولياء الأمور من حول العالم
@@ -752,8 +752,8 @@ function TestimonialsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((t, idx) => (
-            <div key={t.name} className="card-hover modern-card rounded-3xl p-8 sm:p-10 shadow-xl shadow-cyan-500/10 relative animate-fade-in-up" style={{ animationDelay: `${0.1 * idx}s` }}>
-              <QuoteIcon className="w-10 h-10 text-cyan-600 mb-5" />
+            <div key={t.name} className="card-hover modern-card rounded-3xl p-8 sm:p-10 shadow-xl shadow-emerald-500/10 relative animate-fade-in-up" style={{ animationDelay: `${0.1 * idx}s` }}>
+              <QuoteIcon className="w-10 h-10 text-emerald-600 mb-5" />
 
               <p className="text-slate-600 leading-relaxed mb-6 text-base">
                 {t.text}
@@ -768,11 +768,11 @@ function TestimonialsSection() {
 
               {/* Author */}
               <div className="flex items-center gap-4 pt-5 border-t border-slate-100">
-                <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0">
+                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0">
                   {t.avatar}
                 </div>
                 <div>
-                  <h4 className="font-bold text-[#09283f] leading-normal">{t.name}</h4>
+                  <h4 className="font-bold text-emerald-950 leading-normal">{t.name}</h4>
                   <p className="text-slate-400 text-sm leading-normal">{t.role}</p>
                 </div>
               </div>
@@ -788,36 +788,36 @@ function TestimonialsSection() {
 
 function CTASection() {
   return (
-    <section className="section-spacing bg-gradient-to-b from-[#f6fbfb] to-[#eef7f5] relative overflow-hidden">
-      <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-cyan-100/40 to-transparent" />
+    <section className="section-spacing bg-gradient-to-b from-[#f2f9f9] to-[#edf6f6] relative overflow-hidden">
+      <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-emerald-100/40 to-transparent" />
       <div className="site-container max-w-5xl">
-        <div className="relative bg-gradient-to-bl from-[#073252] via-[#0c4769] to-[#072a45] rounded-[2rem] px-8 py-16 sm:px-12 md:px-20 md:py-20 text-center overflow-hidden shadow-2xl animate-gradient">
+        <div className="relative bg-gradient-to-bl from-[#0a3f53] via-[#11708a] to-[#0a455a] rounded-[2rem] px-8 py-16 sm:px-12 md:px-20 md:py-20 text-center overflow-hidden shadow-2xl animate-gradient">
           {/* Background decorations */}
           <div className="absolute inset-0 geometric-pattern" />
           <div className="aurora-bg" />
           <div className="absolute top-0 left-0 w-64 h-64 bg-gold-500/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-64 h-64 bg-cyan-400/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-64 h-64 bg-emerald-400/20 rounded-full blur-3xl" />
 
           <div className="relative z-10">
             <div className="text-5xl mb-8">📖</div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-8" style={{ lineHeight: 1.4 }}>
               ابدأ رحلتك الآن
             </h2>
-            <p className="text-cyan-100/80 text-lg sm:text-xl mb-12 max-w-lg mx-auto leading-relaxed">
+            <p className="text-emerald-100/80 text-lg sm:text-xl mb-12 max-w-lg mx-auto leading-relaxed">
               احجز حصتك التجريبية المجانية اليوم وابدأ رحلة لا تنتهي مع كتاب
               الله
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-              <Link href="/register" className="glow-button inline-flex items-center justify-center bg-white text-[#073252] font-bold text-lg px-12 py-5 rounded-2xl hover:bg-cyan-50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 whitespace-nowrap">
+              <Link href="/register" className="glow-button inline-flex items-center justify-center bg-white text-[#0a4a5b] font-bold text-lg px-12 py-5 rounded-2xl hover:bg-emerald-50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 whitespace-nowrap">
                 احجز حصتك المجانية
               </Link>
-              <Link href="/chat" className="inline-flex items-center justify-center glass border border-cyan-200/25 text-white font-medium text-lg px-10 py-5 rounded-2xl hover:bg-white/15 transition-all whitespace-nowrap">
+              <Link href="/chat" className="inline-flex items-center justify-center glass border border-emerald-200/25 text-white font-medium text-lg px-10 py-5 rounded-2xl hover:bg-white/15 transition-all whitespace-nowrap">
                 تواصل معنا عبر واتساب
               </Link>
             </div>
 
-            <p className="text-cyan-100/78 text-sm mt-6">
+            <p className="text-emerald-100/78 text-sm mt-6">
               بدون بطاقة ائتمان • إلغاء في أي وقت
             </p>
           </div>
@@ -837,26 +837,26 @@ function Footer() {
 
       <div className="site-container relative z-10">
         {/* Main footer */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 py-16 border-b border-cyan-500/20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 py-16 border-b border-emerald-500/20">
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-cyan-500/30">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/30">
                 <span className="text-white text-xl font-bold">ن</span>
               </div>
               <div>
                 <span className="font-bold text-lg block leading-normal">أكاديمية النور</span>
-                <span className="text-cyan-200/65 text-xs">Al-Noor Academy</span>
+                <span className="text-emerald-200/65 text-xs">Al-Noor Academy</span>
               </div>
             </div>
-            <p className="text-cyan-100/60 text-sm leading-relaxed mb-6">
+            <p className="text-emerald-100/60 text-sm leading-relaxed mb-6">
               منصة تعليمية متكاملة لتعلم القرآن الكريم والتجويد والتفسير مع نخبة
               من المعلمين المتخصصين.
             </p>
             {/* Social */}
             <div className="flex gap-3">
               {["فيسبوك", "تويتر", "يوتيوب", "واتساب"].map((s) => (
-                <button key={s} className="w-10 h-10 rounded-xl glass border border-cyan-300/20 flex items-center justify-center text-cyan-100/70 hover:text-white hover:bg-white/10 transition-all text-xs">
+                <button key={s} className="w-10 h-10 rounded-xl glass border border-emerald-300/20 flex items-center justify-center text-emerald-100/70 hover:text-white hover:bg-white/10 transition-all text-xs">
                   {s[0]}
                 </button>
               ))}
@@ -875,7 +875,7 @@ function Footer() {
                 { label: "لوحة التحكم", href: "/admin" },
               ].map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-cyan-100/78 hover:text-cyan-200 transition-colors text-sm leading-relaxed block py-0.5">
+                  <Link href={link.href} className="text-emerald-100/78 hover:text-emerald-200 transition-colors text-sm leading-relaxed block py-0.5">
                     {link.label}
                   </Link>
                 </li>
@@ -895,7 +895,7 @@ function Footer() {
                 { label: "التجويد والتلاوة", href: "/tajweed" },
               ].map((service) => (
                 <li key={service.label}>
-                  <Link href={service.href} className="text-cyan-100/78 hover:text-cyan-200 transition-colors text-sm leading-relaxed block py-0.5">
+                  <Link href={service.href} className="text-emerald-100/78 hover:text-emerald-200 transition-colors text-sm leading-relaxed block py-0.5">
                     {service.label}
                   </Link>
                 </li>
@@ -908,29 +908,29 @@ function Footer() {
             <h4 className="font-bold text-lg mb-6 text-white leading-normal">تواصل معنا</h4>
             <ul className="space-y-5">
               <li className="flex items-center gap-4">
-                <div className="w-11 h-11 rounded-xl glass border border-cyan-300/20 flex items-center justify-center text-cyan-300 shrink-0">
+                <div className="w-11 h-11 rounded-xl glass border border-emerald-300/20 flex items-center justify-center text-emerald-300 shrink-0">
                   📧
                 </div>
                 <div>
-                  <p className="text-cyan-100/75 text-xs leading-relaxed">البريد الإلكتروني</p>
+                  <p className="text-emerald-100/75 text-xs leading-relaxed">البريد الإلكتروني</p>
                   <p className="text-white text-sm leading-relaxed">info@alnoor-academy.com</p>
                 </div>
               </li>
               <li className="flex items-center gap-4">
-                <div className="w-11 h-11 rounded-xl glass border border-cyan-300/20 flex items-center justify-center text-cyan-300 shrink-0">
+                <div className="w-11 h-11 rounded-xl glass border border-emerald-300/20 flex items-center justify-center text-emerald-300 shrink-0">
                   📱
                 </div>
                 <div>
-                  <p className="text-cyan-100/75 text-xs leading-relaxed">الهاتف / واتساب</p>
+                  <p className="text-emerald-100/75 text-xs leading-relaxed">الهاتف / واتساب</p>
                   <p className="text-white text-sm leading-relaxed" dir="ltr">+20 101 508 6381</p>
                 </div>
               </li>
               <li className="flex items-center gap-4">
-                <div className="w-11 h-11 rounded-xl glass border border-cyan-300/20 flex items-center justify-center text-cyan-300 shrink-0">
+                <div className="w-11 h-11 rounded-xl glass border border-emerald-300/20 flex items-center justify-center text-emerald-300 shrink-0">
                   🕐
                 </div>
                 <div>
-                  <p className="text-cyan-100/75 text-xs leading-relaxed">ساعات العمل</p>
+                  <p className="text-emerald-100/75 text-xs leading-relaxed">ساعات العمل</p>
                   <p className="text-white text-sm leading-relaxed">٢٤ ساعة / ٧ أيام</p>
                 </div>
               </li>
@@ -940,14 +940,14 @@ function Footer() {
 
         {/* Bottom bar */}
         <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-cyan-100/68 text-sm leading-normal">
+          <p className="text-emerald-100/68 text-sm leading-normal">
             © {new Date().getFullYear()} أكاديمية النور. جميع الحقوق محفوظة.
           </p>
           <div className="flex gap-8">
-            <Link href="#" className="text-cyan-100/68 hover:text-cyan-200 transition-colors text-sm leading-normal whitespace-nowrap">
+            <Link href="#" className="text-emerald-100/68 hover:text-emerald-200 transition-colors text-sm leading-normal whitespace-nowrap">
               سياسة الخصوصية
             </Link>
-            <Link href="#" className="text-cyan-100/68 hover:text-cyan-200 transition-colors text-sm leading-normal whitespace-nowrap">
+            <Link href="#" className="text-emerald-100/68 hover:text-emerald-200 transition-colors text-sm leading-normal whitespace-nowrap">
               الشروط والأحكام
             </Link>
           </div>
