@@ -26,9 +26,10 @@ function UsersIcon({ className = "w-6 h-6" }) {
 
 const navLinks = [
   { label: "الرئيسية", href: "#hero" },
-  { label: "هوية المنصة", href: "#identity" },
-  { label: "الفئات المستهدفة", href: "#audience" },
-  { label: "الخدمات", href: "#services" },
+  { label: "تحفيظ القرآن بالفيديو", href: "/video-tahfeez-quran" },
+  { label: "دروس أونلاين - تجريبي", href: "/online-droos-demo" },
+  { label: "تعليم العربية لغير الناطقين بها", href: "/arabic-for-non-speakers" },
+  { label: "خدمة الدردشة مع الطلاب", href: "/student-chat-service" },
   { label: "تواصل معنا", href: "#contact" },
 ];
 
@@ -42,22 +43,22 @@ const audienceSegments = [
 
 const services = [
   {
-    title: "Video Tahfeez Quran",
+    title: "تحفيظ القرآن بالفيديو",
     href: "/video-tahfeez-quran",
     description: "مسار تحفيظ تفاعلي بالصوت والصورة مع متابعة أسبوعية.",
   },
   {
-    title: "Online Droos - Demo",
+    title: "دروس أونلاين - تجريبي",
     href: "/online-droos-demo",
     description: "دروس أونلاين تجريبية لتجربة أسلوب التعلم داخل المنصة.",
   },
   {
-    title: "Teaching Arabic Language to Non-Speakers",
+    title: "تعليم العربية لغير الناطقين بها",
     href: "/arabic-for-non-speakers",
     description: "تعليم العربية لغير الناطقين بها بمنهج مبسط ومتدرج.",
   },
   {
-    title: "Chatting Service with Students",
+    title: "خدمة الدردشة مع الطلاب",
     href: "/student-chat-service",
     description: "خدمة تواصل نصي مباشر لمتابعة الطلاب والإجابة عن الاستفسارات.",
   },
