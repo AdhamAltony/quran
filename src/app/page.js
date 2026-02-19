@@ -26,10 +26,9 @@ function UsersIcon({ className = "w-6 h-6" }) {
 
 const navLinks = [
   { label: "الرئيسية", href: "#hero" },
-  { label: "تحفيظ القرآن بالفيديو", href: "/video-tahfeez-quran" },
-  { label: "دروس أونلاين - تجريبي", href: "/online-droos-demo" },
-  { label: "تعليم العربية لغير الناطقين بها", href: "/arabic-for-non-speakers" },
-  { label: "خدمة الدردشة مع الطلاب", href: "/student-chat-service" },
+  { label: "هوية المنصة", href: "#identity" },
+  { label: "الفئات المستهدفة", href: "#audience" },
+  { label: "أقسام المنصة الرئيسية", href: "#platform-sections" },
   { label: "تواصل معنا", href: "#contact" },
 ];
 
@@ -41,26 +40,46 @@ const audienceSegments = [
   { title: "المعلمون والطلاب", description: "دورات تدريبية متخصصة." },
 ];
 
-const services = [
+const platformSections = [
   {
-    title: "تحفيظ القرآن بالفيديو",
-    href: "/video-tahfeez-quran",
-    description: "مسار تحفيظ تفاعلي بالصوت والصورة مع متابعة أسبوعية.",
+    id: "quran-and-sciences",
+    title: "1. ركن القرآن الكريم وعلومه",
+    items: [
+      "تحفيظ تفاعلي بالصوت والصورة",
+      "تقسيم حسب العمر والمستوى",
+      "اختبارات حفظ أسبوعية",
+      "غرف تسميع مباشرة مع شيخ",
+      "مسار الإجازة",
+    ],
   },
   {
-    title: "دروس أونلاين - تجريبي",
-    href: "/online-droos-demo",
-    description: "دروس أونلاين تجريبية لتجربة أسلوب التعلم داخل المنصة.",
+    id: "arabic-non-native",
+    title: "2. اللغة العربية لغير الناطقين بها",
+    items: [],
   },
   {
-    title: "تعليم العربية لغير الناطقين بها",
-    href: "/arabic-for-non-speakers",
-    description: "تعليم العربية لغير الناطقين بها بمنهج مبسط ومتدرج.",
+    id: "egypt-gulf-curricula",
+    title: "3. المناهج الدراسية (مصر + الخليج)",
+    items: [
+      "لغة عربية",
+      "اللغات الأجنبية: (الإنجليزية، الفرنسية، الألمانية)",
+      "الرياضيات (منهج: عربي - إنجليزي)",
+      "العلوم: الفيزياء والكيمياء والأحياء (منهج: عربي – إنجليزي)",
+      "الدراسات اجتماعية: تاريخ وجغرافيا.",
+      "تربية إسلامية.",
+    ],
   },
   {
-    title: "خدمة الدردشة مع الطلاب",
-    href: "/student-chat-service",
-    description: "خدمة تواصل نصي مباشر لمتابعة الطلاب والإجابة عن الاستفسارات.",
+    id: "courses-center",
+    title: "4. مركز الدورات",
+    intro: "نوع الدورة",
+    items: [
+      "النحو: تأسيس وتوظيف",
+      "الصرف",
+      "العَروض",
+      "البلاغة",
+      "إعدا معلم اللغة العربية للناطقين بغيرها",
+    ],
   },
 ];
 
@@ -93,7 +112,7 @@ function Navbar() {
             </div>
 
             <Link
-              href="#services"
+              href="#platform-sections"
               className="glow-button inline-flex items-center justify-center rounded-lg bg-gradient-to-l from-emerald-500 to-emerald-600 px-4 py-2.5 text-xs font-bold text-white transition-all hover:-translate-y-0.5 hover:from-emerald-400 hover:to-emerald-500 sm:px-7 sm:py-3 sm:text-sm"
             >
               ابدأ التعلّم
@@ -132,7 +151,7 @@ function HeroSection() {
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href="#services"
+              href="#platform-sections"
               className="glow-button inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-l from-emerald-500 to-emerald-600 px-7 py-3.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:from-emerald-400 hover:to-emerald-500 sm:w-auto"
             >
               استكشف خدماتنا
@@ -210,31 +229,44 @@ function AudienceSection() {
 
 function ServicesSection() {
   return (
-    <section id="services" className="section-spacing relative overflow-hidden bg-gradient-to-b from-[#0c3447] via-[#0a2c3d] to-[#082433]">
+    <section id="platform-sections" className="section-spacing relative overflow-hidden bg-gradient-to-b from-[#0c3447] via-[#0a2c3d] to-[#082433]">
       <div className="hero-mesh" />
       <div className="site-container relative z-10">
         <div className="mb-12 text-center">
-          <span className="mb-4 inline-block rounded-full border border-emerald-300/35 bg-white/10 px-5 py-2 text-sm font-bold text-emerald-200">الخدمات والصفحات</span>
+          <span className="mb-4 inline-block rounded-full border border-emerald-300/35 bg-white/10 px-5 py-2 text-sm font-bold text-emerald-200">ثالثاً</span>
           <h2 className="text-3xl font-black text-white sm:text-4xl" style={{ lineHeight: 1.4 }}>
-            روابط أقسام المنصة الأساسية
+            أقسام المنصة الرئيسية
           </h2>
         </div>
 
+        <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
+          {platformSections.map((section) => (
+            <Link
+              key={section.id}
+              href={`#${section.id}`}
+              className="inline-flex items-center gap-2 rounded-lg border border-emerald-200/35 bg-emerald-500/15 px-4 py-2.5 text-sm font-bold text-emerald-50 transition-colors hover:bg-emerald-500/25"
+            >
+              {section.title}
+              <SparkIcon className="h-4 w-4" />
+            </Link>
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {services.map((service) => (
-            <article key={service.href} className="glass card-hover rounded-3xl p-7 shadow-xl shadow-emerald-900/30">
+          {platformSections.map((section) => (
+            <article id={section.id} key={section.id} className="glass card-hover rounded-3xl p-7 shadow-xl shadow-emerald-900/30">
               <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-400/15 text-emerald-100">
                 <BookIcon className="h-6 w-6" />
               </div>
-              <h3 className="mb-3 text-xl font-bold leading-relaxed text-white">{service.title}</h3>
-              <p className="mb-6 text-emerald-100/90">{service.description}</p>
-              <Link
-                href={service.href}
-                className="inline-flex items-center gap-2 rounded-lg border border-emerald-200/35 bg-emerald-500/20 px-4 py-2.5 text-sm font-bold text-emerald-50 transition-colors hover:bg-emerald-500/30"
-              >
-                الانتقال إلى الصفحة
-                <SparkIcon className="h-4 w-4" />
-              </Link>
+              <h3 className="mb-4 text-xl font-bold leading-relaxed text-white">{section.title}</h3>
+              {section.intro ? <p className="mb-3 text-emerald-100/95">{section.intro}</p> : null}
+              {section.items.length ? (
+                <ul className="list-inside list-disc space-y-2 text-emerald-100/90">
+                  {section.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              ) : null}
             </article>
           ))}
         </div>
