@@ -28,7 +28,10 @@ const navLinks = [
   { label: "الرئيسية", href: "#hero" },
   { label: "هوية المنصة", href: "#identity" },
   { label: "الفئات المستهدفة", href: "#audience" },
-  { label: "أقسام المنصة الرئيسية", href: "#platform-sections" },
+  { label: "ركن القرآن", href: "/quran-and-sciences" },
+  { label: "العربية لغير الناطقين", href: "/arabic-non-native" },
+  { label: "المناهج الدراسية", href: "/egypt-gulf-curricula" },
+  { label: "مركز الدورات", href: "/courses-center" },
   { label: "تواصل معنا", href: "#contact" },
 ];
 
