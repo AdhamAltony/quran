@@ -108,12 +108,12 @@ function Navbar() {
               </div>
             </Link>
 
-            <div className="hidden items-center gap-8 lg:flex">
+            <div className="hidden items-center gap-2 lg:flex xl:gap-3">
               {navLinks.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="relative py-2 text-sm font-medium text-emerald-50/90 transition-colors hover:text-white after:absolute after:bottom-0 after:right-0 after:h-0.5 after:w-0 after:bg-emerald-300 after:transition-all hover:after:w-full"
+                  className="nav-link-pill"
                 >
                   {item.label}
                 </Link>
@@ -253,7 +253,7 @@ function ServicesSection() {
             <Link
               key={section.id}
               href={`#${section.id}`}
-              className="inline-flex items-center gap-2 rounded-lg border border-emerald-200/35 bg-emerald-500/15 px-4 py-2.5 text-sm font-bold text-emerald-50 transition-colors hover:bg-emerald-500/25"
+              className="section-link-chip"
             >
               {section.title}
               <SparkIcon className="h-4 w-4" />

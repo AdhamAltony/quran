@@ -15,7 +15,7 @@ export default function EgyptGulfCurriculaPage() {
       <section className="site-container py-24">
         <Link
           href="/"
-          className="mb-8 inline-flex rounded-lg border border-emerald-200/35 bg-white/10 px-4 py-2 text-sm font-bold text-emerald-100 transition-colors hover:bg-white/15"
+          className="page-back-link mb-8"
         >
           العودة إلى الرئيسية
         </Link>
