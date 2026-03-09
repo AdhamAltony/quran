@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function PortalNavbar({ sectionTitle, links = [], ctaLabel = "الصفحة الرئيسية", ctaHref = "/" }) {
+export default function PortalNavbar({ sectionTitle, links = [], ctaLabel = "الصفحة الرئيسية", ctaHref = "/", userSession = null, onLogout }) {
   return (
     <nav className="fixed right-0 left-0 top-0 z-50" dir="rtl">
       <div className="nav-surface shadow-[0_12px_36px_-16px_rgba(4,16,31,0.85)]">
@@ -24,12 +24,33 @@ export default function PortalNavbar({ sectionTitle, links = [], ctaLabel = "ا�
               ))}
             </div>
 
-            <Link
-              href={ctaHref}
-              className="glow-button inline-flex items-center justify-center gap-1.5 rounded-lg bg-gradient-to-l from-emerald-500 to-emerald-600 px-4 py-2.5 text-xs font-bold text-white transition-all hover:-translate-y-0.5 hover:from-emerald-400 hover:to-emerald-500 sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
-            >
-              {ctaLabel}
-            </Link>
+            {userSession ? (
+              <div className="flex items-center gap-4">
+                <div className="hidden sm:flex flex-col text-right">
+                  <span className="text-sm font-bold text-white">{userSession.name}</span>
+                  <span className="text-xs text-emerald-200">{userSession.role === 'admin' ? 'مدير النظام' : userSession.role}</span>
+                </div>
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 text-white font-bold border-2 border-emerald-400 shadow-md">
+                  {userSession.name?.charAt(0) || "U"}
+                </div>
+                <button
+                  onClick={onLogout}
+                  className="rounded-lg bg-red-500/10 px-3 py-2 text-xs font-bold text-red-100 transition-all hover:bg-red-500/20 hover:text-white"
+                  title="تسجيل الخروج"
+                >
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                </button>
+              </div>
+            ) : (
+              <Link
+                href={ctaHref}
+                className="glow-button inline-flex items-center justify-center gap-1.5 rounded-lg bg-gradient-to-l from-emerald-500 to-emerald-600 px-4 py-2.5 text-xs font-bold text-white transition-all hover:-translate-y-0.5 hover:from-emerald-400 hover:to-emerald-500 sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
+              >
+                {ctaLabel}
+              </Link>
+            )}
           </div>
         </div>
       </div>
