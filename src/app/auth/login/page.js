@@ -10,6 +10,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,9 +21,9 @@ export default function LoginPage() {
     }
 
     const validUsers = [
-      { role: "student", email: "student@gmail.com", password: "123456", redirect: "/student/profile" },
-      { role: "admin", email: "admin@gmail.com", password: "123456", redirect: "/admin" },
-      { role: "teacher", email: "teacher@gmail.com", password: "123456", redirect: "/teacher/dashboard" }
+      { role: "student", email: "student@gmail.com", password: "123456", redirect: "/student/profile", name: "طالب تجريبي" },
+      { role: "admin", email: "admin@gmail.com", password: "123456", redirect: "/admin/dashboard", name: "مدير النظام" },
+      { role: "teacher", email: "teacher@gmail.com", password: "123456", redirect: "/teacher/dashboard", name: "معلم تجريبي" }
     ];
 
     const userByEmail = validUsers.find(u => u.email === email);
@@ -43,7 +44,13 @@ export default function LoginPage() {
     }
 
     // Success
-    document.cookie = `userRole=${userByEmail.role}; path=/; max-age=86400; SameSite=Strict`;
+    const cookieOptions = rememberMe ? "max-age=2592000; SameSite=Strict" : "SameSite=Strict";
+    const sessionData = { role: userByEmail.role, email: userByEmail.email, name: userByEmail.name };
+    const encodedSession = btoa(encodeURIComponent(JSON.stringify(sessionData)));
+
+    document.cookie = `userRole=${userByEmail.role}; path=/; ${cookieOptions}`;
+    document.cookie = `session=${encodedSession}; path=/; ${cookieOptions}`;
+
     setError("");
     router.push(userByEmail.redirect);
   };
@@ -175,7 +182,12 @@ export default function LoginPage() {
 
           <div className="flex items-center justify-between gap-3 text-sm">
             <label className="inline-flex items-center gap-2 text-slate-700">
-              <input type="checkbox" className="h-4 w-4 rounded border-emerald-300 text-emerald-600 focus:ring-emerald-500" />
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="h-4 w-4 rounded border-emerald-300 text-emerald-600 focus:ring-emerald-500"
+              />
               تذكرني
             </label>
             <Link href="#" className="font-bold text-emerald-700 hover:text-emerald-800">
