@@ -3,11 +3,20 @@
 import { useState } from "react";
 
 // Mock data
+// Mock data for courses
+const ALL_COURSES = [
+    { id: 'c1', title: 'النحو: تأسيس وتوظيف' },
+    { id: 'c2', title: 'الصرف' },
+    { id: 'c3', title: 'العَروض' },
+    { id: 'c4', title: 'البلاغة' },
+    { id: 'c5', title: 'إعداد معلم اللغة العربية' },
+];
+
 const initialUsers = [
-    { id: 1, name: "أحمد محمود", email: "ahmed@example.com", role: "student", course: "ركن القرآن" },
-    { id: 2, name: "منى علي", email: "mona@example.com", role: "student", course: "المناهج الدراسية" },
-    { id: 3, name: "عمر خالد", email: "omar@example.com", role: "student", course: "العربية لغير الناطقين" },
-    { id: 4, name: "الشيخ محمود زايد", email: "mahmoud.z@mashael.com", role: "teacher", course: "ركن القرآن" },
+    { id: 1, name: "أحمد محمود", email: "student1@gmail.com", role: "student", course: "ركن القرآن" },
+    { id: 2, name: "منى علي", email: "student2@gmail.com", role: "student", course: "المناهج الدراسية" },
+    { id: 3, name: "عمر خالد", email: "student3@gmail.com", role: "student", course: "العربية لغير الناطقين" },
+    { id: 4, name: "الشيخ محمود زايد", email: "teacher@gmail.com", role: "teacher", course: "ركن القرآن" },
     { id: 5, name: "أ. فاطمة سعيد", email: "fatima.s@mashael.com", role: "teacher", course: "المناهج الدراسية" },
 ];
 
@@ -21,6 +30,11 @@ export default function AdminUsersPage() {
 
     // Delete Modal State
     const [userToDelete, setUserToDelete] = useState(null);
+
+    // Course Assignment State
+    const [assigningToUser, setAssigningToUser] = useState(null);
+    const [selectedCourses, setSelectedCourses] = useState([]);
+    const [toast, setToast] = useState(null);
 
     const filteredUsers = users.filter((user) => user.role === activeTab);
 
@@ -48,6 +62,26 @@ export default function AdminUsersPage() {
         e.preventDefault();
         setUsers(users.map((u) => (u.id === editingUser.id ? { ...u, ...editForm } : u)));
         setEditingUser(null);
+    };
+    const openAssignModal = (user) => {
+        setAssigningToUser(user);
+        const stored = localStorage.getItem(`assigned_courses_${user.email}`);
+        setSelectedCourses(stored ? JSON.parse(stored) : []);
+    };
+
+    const handleSaveAssignments = () => {
+        if (assigningToUser) {
+            localStorage.setItem(`assigned_courses_${assigningToUser.email}`, JSON.stringify(selectedCourses));
+            setAssigningToUser(null);
+            setToast({ message: "تم حفظ الصلاحيات بنجاح!", type: "success" });
+            setTimeout(() => setToast(null), 3000);
+        }
+    };
+
+    const toggleCourse = (id) => {
+        setSelectedCourses(prev => 
+            prev.includes(id) ? prev.filter(c => c !== id) : [...prev, id]
+        );
     };
 
     return (
@@ -94,6 +128,7 @@ export default function AdminUsersPage() {
                                 <th className="py-4 pl-4 font-bold">الاسم</th>
                                 <th className="py-4 pl-4 font-bold">البريد الإلكتروني</th>
                                 <th className="py-4 pl-4 font-bold">القسم / المسار</th>
+                                {activeTab === "student" && <th className="py-4 pl-4 font-bold">الدورات</th>}
                                 <th className="py-4 font-bold w-32">الإجراءات</th>
                             </tr>
                         </thead>
@@ -108,6 +143,19 @@ export default function AdminUsersPage() {
                                                 {user.course}
                                             </span>
                                         </td>
+                                        {activeTab === "student" && (
+                                            <td className="py-4 pl-4">
+                                                <button
+                                                    onClick={() => openAssignModal(user)}
+                                                    className="inline-flex items-center gap-1 rounded-lg border border-emerald-200 bg-white px-2.5 py-1 text-xs font-bold text-emerald-700 transition-all hover:bg-emerald-50"
+                                                >
+                                                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                                    </svg>
+                                                    {localStorage.getItem(`assigned_courses_${user.email}`) ? "تعديل الدورات" : "إتاحة دورات"}
+                                                </button>
+                                            </td>
+                                        )}
                                         <td className="py-4">
                                             <div className="flex items-center gap-2">
                                                 <button
@@ -230,6 +278,61 @@ export default function AdminUsersPage() {
                 </div>
             )}
 
+            {/* Course Assignment Modal */}
+            {assigningToUser && (
+                <div className="fixed inset-0 z-[60] flex items-center justify-center bg-emerald-950/40 p-4 backdrop-blur-sm animate-in fade-in">
+                    <div className="modern-card w-full max-w-md rounded-3xl border border-white bg-white p-6 shadow-2xl sm:p-8 animate-in zoom-in-95">
+                        <div className="mb-6 flex items-center justify-between">
+                            <h2 className="text-2xl font-black text-emerald-950">إدارة دورات الطالب</h2>
+                            <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">{assigningToUser.name}</span>
+                        </div>
+
+                        <p className="mb-4 text-sm text-slate-500">اختر الدورات التي ترغب في إتاحتها لهذا الطالب:</p>
+
+                        <div className="space-y-3 mb-8 max-h-[40vh] overflow-y-auto pr-1 thin-scrollbar">
+                            {ALL_COURSES.map((course) => (
+                                <label key={course.id} className="flex items-center gap-3 p-3 rounded-xl border border-emerald-50 bg-emerald-50/30 cursor-pointer transition hover:bg-emerald-50">
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedCourses.includes(course.id)}
+                                        onChange={() => toggleCourse(course.id)}
+                                        className="h-5 w-5 rounded border-emerald-300 text-emerald-600 focus:ring-emerald-500"
+                                    />
+                                    <span className="font-bold text-emerald-900">{course.title}</span>
+                                </label>
+                            ))}
+                        </div>
+
+                        <div className="flex gap-3">
+                            <button
+                                onClick={handleSaveAssignments}
+                                className="flex-1 rounded-xl bg-emerald-600 py-3 text-sm font-bold text-white shadow-lg shadow-emerald-600/20 transition hover:bg-emerald-700 hover:-translate-y-0.5"
+                            >
+                                حفظ الصلاحيات
+                            </button>
+                            <button
+                                onClick={() => setAssigningToUser(null)}
+                                className="flex-1 rounded-xl bg-slate-100 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-200"
+                            >
+                                إغلاق
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {/* Toast Notification */}
+            {toast && (
+                <div className="fixed bottom-10 left-10 z-[100] flex animate-in slide-in-from-left-10 fade-in">
+                    <div className="flex items-center gap-3 rounded-2xl bg-emerald-900 px-6 py-4 text-white shadow-2xl shadow-emerald-950/40 border border-emerald-400/20">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-400">
+                            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <span className="font-bold text-sm">{toast.message}</span>
+                    </div>
+                </div>
+            )}
         </main>
     );
 }
