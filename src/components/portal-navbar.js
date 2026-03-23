@@ -5,7 +5,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-export default function PortalNavbar({ sectionTitle, links = [], ctaLabel = "الصفحة الرئيسية", ctaHref = "/", userSession = null, onLogout, showCtaWithSession = false }) {
+export default function PortalNavbar({ sectionTitle, links = [], ctaLabel = "الصفحة الرئيسة", ctaHref = "/", userSession = null, onLogout, showCtaWithSession = false }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 

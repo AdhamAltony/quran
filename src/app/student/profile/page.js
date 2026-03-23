@@ -106,7 +106,7 @@ export default function StudentProfilePage() {
                 href="/"
                 className="glow-button inline-flex items-center justify-center rounded-xl bg-gradient-to-l from-emerald-500 to-emerald-600 px-4 py-2 text-sm font-bold text-white transition-all hover:from-emerald-400 hover:to-emerald-500"
               >
-                الصفحة الرئيسية
+                الصفحة الرئيسة
               </Link>
             </div>
           </div>
