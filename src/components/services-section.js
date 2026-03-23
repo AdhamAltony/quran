@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 function QuranIcon({ className = "w-6 h-6" }) {
   return (
@@ -39,6 +40,7 @@ const platformSections = [
     id: "quran-and-sciences",
     title: "ركن القرآن الكريم وعلومه",
     Icon: QuranIcon,
+    href: "/student/quran-teachers",
     items: [
       "تحفيظ تفاعلي بالصوت والصورة",
       "تقسيم حسب العمر والمستوى",
@@ -51,6 +53,7 @@ const platformSections = [
     id: "arabic-non-native",
     title: "اللغة العربية لغير الناطقين بها",
     Icon: LanguageIcon,
+    href: "/student/arabic-teachers",
     items: [
       "تأسيس الحروف والنطق الصحيح",
       "مهارات الاستماع والتحدث والقراءة والكتابة",
@@ -63,6 +66,7 @@ const platformSections = [
     id: "egypt-gulf-curricula",
     title: "المناهج الدراسية (مصر + الخليج)",
     Icon: CurriculaIcon,
+    href: "/student/curricula-teachers",
     items: [
       "لغة عربية",
       "اللغات الأجنبية: (الإنجليزية، الفرنسية، الألمانية)",
@@ -76,6 +80,7 @@ const platformSections = [
     id: "courses-center",
     title: "الدورات:",
     Icon: CoursesIcon,
+    href: "/student/courses",
     items: [
       "النحو: تأسيس وتوظيف",
       "الصرف",
@@ -90,6 +95,7 @@ const platformSections = [
 ];
 
 export default function ServicesSection() {
+  const router = useRouter();
   const scrollContainerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -182,7 +188,9 @@ export default function ServicesSection() {
               <article
                 id={section.id}
                 key={section.id}
-                className="min-w-[85vw] sm:min-w-[400px] flex-none snap-center glass card-hover rounded-3xl p-7 shadow-xl shadow-emerald-900/30 transition-transform duration-300 hover:scale-[1.02]"
+                onClick={() => section.href && router.push(section.href)}
+                className={`min-w-[85vw] sm:min-w-[400px] flex-none snap-center glass card-hover rounded-3xl p-7 shadow-xl shadow-emerald-900/30 transition-transform duration-300 hover:scale-[1.02] ${section.href ? "cursor-pointer" : ""
+                  }`}
               >
                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-400/15 text-emerald-100 shadow-inner">
                   <section.Icon 
