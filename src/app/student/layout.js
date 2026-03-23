@@ -34,7 +34,7 @@ export default async function StudentLayout({ children }) {
       <StudentNavbar 
         sectionTitle={sessionCookie ? "بوابة الطالب" : "منصة مشاعل المعرفة"} 
         links={STUDENT_LINKS} 
-        ctaLabel="الرئيسية" 
+        ctaLabel="الرئيسة" 
         ctaHref="/" 
       />
       <div className="pt-24">{children}</div>

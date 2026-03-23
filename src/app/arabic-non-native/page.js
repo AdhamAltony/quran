@@ -459,7 +459,7 @@ export default function ArabicNonNativePage() {
       <TeacherNavbar
         sectionTitle="العربية لغير الناطقين"
         links={NAV_LINKS}
-        ctaLabel="العودة إلى الصفحة الرئيسية"
+        ctaLabel="العودة إلى الصفحة الرئيسة"
         ctaHref="/teacher/profile"
         showCtaWithSession={true}
       />

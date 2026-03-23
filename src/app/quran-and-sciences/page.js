@@ -23,7 +23,7 @@ const TOPICS = [
 ];
 
 const NAV_LINKS = [
-  { label: "طلاب القسم", href: "/quran-and-sciences/students" },
+  { label: "الرئيسة", href: "/" },
   { label: "الملف الشخصي", href: "/teacher/profile" },
 ];
 
@@ -458,7 +458,7 @@ export default function TeacherSessionPage() {
       <TeacherNavbar
         sectionTitle="بوابة ركن القرآن"
         links={NAV_LINKS}
-        ctaLabel="العودة إلى الصفحة الرئيسية"
+        ctaLabel="العودة إلى الصفحة الرئيسة"
         ctaHref="/teacher/profile"
         showCtaWithSession={true}
       />

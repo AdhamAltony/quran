@@ -458,7 +458,7 @@ export default function EgyptGulfCurriculaPage() {
       <TeacherNavbar
         sectionTitle="المناهج الدراسية"
         links={NAV_LINKS}
-        ctaLabel="العودة إلى الصفحة الرئيسية"
+        ctaLabel="العودة إلى الصفحة الرئيسة"
         ctaHref="/teacher/profile"
         showCtaWithSession={true}
       />

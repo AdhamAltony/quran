@@ -286,8 +286,8 @@ function Navbar() {
               <svg aria-hidden="true" className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" strokeWidth={2} stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
-              <span className="hidden sm:inline">العودة إلى الصفحة الرئيسية</span>
-              <span className="sm:hidden">الرئيسية</span>
+              <span className="hidden sm:inline">العودة إلى الصفحة الرئيسة</span>
+              <span className="sm:hidden">الرئيسة</span>
             </Link>
           </div>
         </div>
