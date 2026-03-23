@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export function middleware(request) {
+export function proxy(request) {
     const userRoleCookie = request.cookies.get('userRole');
     const userRole = userRoleCookie ? userRoleCookie.value : null;
 
@@ -33,22 +33,23 @@ export function middleware(request) {
         return NextResponse.next();
     }
 
-    // 4. Decode Session for course checking if available
+    // 4. Decode Session for course checking
     let userCourse = "";
     const sessionCookie = request.cookies.get('session');
     if (sessionCookie) {
         try {
             const base64Str = sessionCookie.value;
-            const uriEncodedStr = atob(base64Str);
+            // Use Buffer for stability in server/edge environments if possible
+            const uriEncodedStr = Buffer.from(base64Str, 'base64').toString('utf8');
             const jsonStr = decodeURIComponent(uriEncodedStr);
             const sessionData = JSON.parse(jsonStr);
             userCourse = sessionData.course || "";
         } catch {
-            // ignore
+            // fallback
         }
     }
 
-    // Admin-only explicit denial for non-admins for courses-center
+    // explicit denial for non-admins for courses-center
     if (pathname.startsWith('/courses-center')) {
         if (userRole === 'student') {
             return NextResponse.redirect(new URL('/student/profile', request.url));
@@ -57,52 +58,30 @@ export function middleware(request) {
         }
     }
 
-    // 5. Apply Restrictions based on role
-
+    // 5. Apply Restrictions
     if (userRole === 'student') {
-        let isAllowedStudentRoute = pathname.startsWith('/student');
+        let isAllowed = pathname.startsWith('/student');
+        if (isAllowed && pathname.startsWith('/student/quran-teachers') && userCourse !== 'ركن القرآن') isAllowed = false;
+        if (isAllowed && pathname.startsWith('/student/arabic-teachers') && userCourse !== 'العربية لغير الناطقين') isAllowed = false;
+        if (isAllowed && pathname.startsWith('/student/curricula-teachers') && userCourse !== 'المناهج الدراسية') isAllowed = false;
 
-        // Allow only their matching teachers page
-        if (isAllowedStudentRoute && pathname.startsWith('/student/quran-teachers') && userCourse !== 'ركن القرآن') {
-            isAllowedStudentRoute = false;
-        }
-        if (isAllowedStudentRoute && pathname.startsWith('/student/arabic-teachers') && userCourse !== 'العربية لغير الناطقين') {
-            isAllowedStudentRoute = false;
-        }
-        if (isAllowedStudentRoute && pathname.startsWith('/student/curricula-teachers') && userCourse !== 'المناهج الدراسية') {
-            isAllowedStudentRoute = false;
-        }
-
-        if (!isAllowedStudentRoute) {
-            return NextResponse.redirect(new URL('/student/profile', request.url));
-        }
+        if (!isAllowed) return NextResponse.redirect(new URL('/student/profile', request.url));
     }
 
     if (userRole === 'teacher') {
-        let isAllowedTeacherRoute = pathname.startsWith('/teacher');
-
-        // Teachers can also access their specific course's routes
-        if (!isAllowedTeacherRoute) {
-            if (userCourse === 'ركن القرآن' && pathname.startsWith('/quran-and-sciences')) {
-                isAllowedTeacherRoute = true;
-            } else if (userCourse === 'العربية لغير الناطقين' && pathname.startsWith('/arabic-non-native')) {
-                isAllowedTeacherRoute = true;
-            } else if (userCourse === 'المناهج الدراسية' && pathname.startsWith('/egypt-gulf-curricula')) {
-                isAllowedTeacherRoute = true;
-            }
+        let isAllowed = pathname.startsWith('/teacher');
+        if (!isAllowed) {
+            if (userCourse === 'ركن القرآن' && pathname.startsWith('/quran-and-sciences')) isAllowed = true;
+            else if (userCourse === 'العربية لغير الناطقين' && pathname.startsWith('/arabic-non-native')) isAllowed = true;
+            else if (userCourse === 'المناهج الدراسية' && pathname.startsWith('/egypt-gulf-curricula')) isAllowed = true;
         }
-
-        if (!isAllowedTeacherRoute) {
-            return NextResponse.redirect(new URL('/teacher/profile', request.url));
-        }
+        if (!isAllowed) return NextResponse.redirect(new URL('/teacher/profile', request.url));
     }
 
-    // If an unknown role reached here (shouldn't happen with our login logic), send to login
     return NextResponse.next();
 }
 
 export const config = {
-    // Math all routes except API, Next.js static files, and standard public files like images, icons etc.
     matcher: [
         '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
     ],
