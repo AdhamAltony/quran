@@ -7,11 +7,11 @@ import TeacherNavbar from "../teacher/teacher-navbar";
 // ─── Static Data (module-level, never re-created) ─────────────────────────────
 
 const STUDENTS = [
-  "أحمد محمود",
-  "عمر عبد الله",
-  "فاطمة علي",
-  "زينب حسن",
-  "يوسف طارق",
+  { name: "أحمد محمود", email: "ahmed@example.com" },
+  { name: "عمر عبد الله", email: "omar.ara@example.com" },
+  { name: "فاطمة علي", email: "fatma.ara@example.com" },
+  { name: "زينب حسن", email: "zainab.ara@example.com" },
+  { name: "يوسف طارق", email: "youssef.ara@example.com" },
 ];
 
 const TOPICS = [
@@ -161,8 +161,8 @@ function SessionForm({ formData, errors, isSubmitting, onChange, onSubmit }) {
               -- اختر من القائمة --
             </option>
             {STUDENTS.map((s) => (
-              <option key={s} value={s} className="bg-white text-emerald-950">
-                {s}
+              <option key={s.email} value={s.name} className="bg-white text-emerald-950">
+                {s.name}
               </option>
             ))}
           </select>

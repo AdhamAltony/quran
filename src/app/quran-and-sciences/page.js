@@ -161,8 +161,8 @@ function SessionForm({ formData, errors, isSubmitting, onChange, onSubmit }) {
               -- اختر من القائمة --
             </option>
             {STUDENTS.map((s) => (
-              <option key={s} value={s} className="bg-white text-emerald-950">
-                {s}
+              <option key={s.email} value={s.name} className="bg-white text-emerald-950">
+                {s.name}
               </option>
             ))}
           </select>
