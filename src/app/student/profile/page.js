@@ -43,11 +43,7 @@ export default function StudentProfilePage() {
     notes: ""
   });
 
-  const [upcomingSessions] = useState([
-    { course: "اللغة العربية - قواعد", date: "السبت 7 مارس", time: "6:00 م", duration: "60 دقيقة", meetLink: "https://meet.google.com/new" },
-    { course: "تلاوة وتجويد", date: "الاثنين 9 مارس", time: "5:30 م", duration: "45 دقيقة", meetLink: "https://meet.google.com/new" },
-    { course: "مراجعة واجبات", date: "الأربعاء 11 مارس", time: "7:00 م", duration: "30 دقيقة", meetLink: "https://meet.google.com/new" },
-  ]);
+  const [upcomingSessions, setUpcomingSessions] = useState([]);
 
   useEffect(() => {
     const cookies = document.cookie.split("; ");
@@ -81,6 +77,18 @@ export default function StudentProfilePage() {
         const savedProgress = localStorage.getItem(`progress_${currentEmail}`);
         if (savedProgress) {
           setProgressData(JSON.parse(savedProgress));
+        }
+
+        // Fetch upcoming sessions from localStorage
+        const savedSessions = localStorage.getItem(`upcoming_sessions_${currentEmail}`);
+        if (savedSessions) {
+          setUpcomingSessions(JSON.parse(savedSessions));
+        } else {
+          // Fallback static data if none set yet
+          setUpcomingSessions([
+            { course: "اللغة العربية - قواعد", date: "السبت 7 مارس", time: "6:00 م", duration: "60 دقيقة", meetLink: "https://meet.google.com/new" },
+            { course: "تلاوة وتجويد", date: "الاثنين 9 مارس", time: "5:30 م", duration: "45 دقيقة", meetLink: "https://meet.google.com/new" },
+          ]);
         }
       } catch { }
     }
