@@ -14,12 +14,12 @@ export default async function TeacherLayout({ children }) {
       const sessionData = JSON.parse(jsonStr);
       const course = sessionData.course;
 
-      if (course === "ركن القرآن") {
+      if (course === "ركن القرآن الكريم" || course === "ركن القرآن") {
         teacherLinks = [
           { label: "الملف الشخصي", href: "/teacher/profile" },
           { label: "طلاب القسم", href: "/quran-and-sciences/students" }
         ];
-      } else if (course === "العربية لغير الناطقين") {
+      } else if (course === "اللغة العربية لغير الناطقين" || course === "العربية لغير الناطقين") {
         teacherLinks = [
           { label: "الملف الشخصي", href: "/teacher/profile" },
           { label: "طلاب القسم", href: "/arabic-non-native/students" }

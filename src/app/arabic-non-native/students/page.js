@@ -153,10 +153,16 @@ function FooterSection({ currentYear }) {
 }
 
 export default function ArabicStudentsListPage() {
+    const [students, setStudents] = useState([]);
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [currentYear, setCurrentYear] = useState(null);
 
     useEffect(() => {
+        const { getLocalUsers } = require("@/utils/local-db");
+        const allUsers = getLocalUsers();
+        // Filter students for "اللغة العربية لغير الناطقين"
+        const filtered = allUsers.filter(u => u.role === "student" && u.course === "اللغة العربية لغير الناطقين");
+        setStudents(filtered);
         setCurrentYear(new Date().getFullYear());
     }, []);
 
@@ -202,7 +208,7 @@ export default function ArabicStudentsListPage() {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-emerald-100/60">
-                                    {STUDENTS_DATA.map((student, idx) => (
+                                    {students.map((student, idx) => (
                                         <tr key={student.id} className="transition-colors hover:bg-emerald-50/40">
                                             <td className="px-6 py-4 font-medium text-slate-500">{idx + 1}</td>
                                             <td className="px-6 py-4 font-bold text-emerald-950">{student.name}</td>
@@ -230,6 +236,11 @@ export default function ArabicStudentsListPage() {
                                     ))}
                                 </tbody>
                             </table>
+                            {students.length === 0 && (
+                                <div className="p-8 text-center text-slate-500">
+                                    لا يوجد طلاب مسجلين حالياً
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

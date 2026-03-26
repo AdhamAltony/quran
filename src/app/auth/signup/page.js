@@ -91,15 +91,19 @@ export default function SignupPage() {
             return;
         }
 
-        // Simulating success and storing data for the profile
+        // Persist user locally
+        const { saveUser } = require("@/utils/local-db");
         const userData = {
             name: formData.name,
             email: formData.email,
+            password: formData.password, // Store password for login check
             role: role,
             department: DEPARTMENTS.find(d => d.id === formData.department)?.name || "",
             subjects: formData.selectedSubjects.map(id => CURRICULA_SUBJECTS.find(s => s.id === id)?.name).filter(Boolean),
-            course: role === "student" ? "بوابة الطالب" : "لوحة المعلم"
+            course: DEPARTMENTS.find(d => d.id === formData.department)?.name || "" // Use real department name
         };
+        saveUser(userData);
+
         const base64 = btoa(encodeURIComponent(JSON.stringify(userData)));
         document.cookie = `session=${encodeURIComponent(base64)}; path=/; max-age=86400`;
 

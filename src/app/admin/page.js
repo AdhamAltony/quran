@@ -21,7 +21,7 @@ const initialUsers = [
 ];
 
 export default function AdminUsersPage() {
-    const [users, setUsers] = useState(initialUsers);
+    const [users, setUsers] = useState([]);
     const [activeTab, setActiveTab] = useState("student");
 
     // Edit State
@@ -38,6 +38,8 @@ export default function AdminUsersPage() {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        const { getLocalUsers } = require("@/utils/local-db");
+        setUsers(getLocalUsers());
         setMounted(true);
     }, []);
 
@@ -49,7 +51,9 @@ export default function AdminUsersPage() {
 
     const confirmDelete = () => {
         if (userToDelete) {
-            setUsers(users.filter((user) => user.id !== userToDelete));
+            const { deleteUser, getLocalUsers } = require("@/utils/local-db");
+            deleteUser(userToDelete);
+            setUsers(getLocalUsers());
             setUserToDelete(null);
         }
     };
@@ -65,7 +69,9 @@ export default function AdminUsersPage() {
 
     const handleSaveEdit = (e) => {
         e.preventDefault();
-        setUsers(users.map((u) => (u.id === editingUser.id ? { ...u, ...editForm } : u)));
+        const { updateUser, getLocalUsers } = require("@/utils/local-db");
+        updateUser({ ...editingUser, ...editForm });
+        setUsers(getLocalUsers());
         setEditingUser(null);
     };
     const openAssignModal = (user) => {
