@@ -122,6 +122,8 @@ export default function StudentProfilePage() {
           const updated = { ...prev, image: newImage };
           // Save image immediately so it reflects in Navbar and after refresh
           localStorage.setItem(`student_profile_${student.email}`, JSON.stringify(updated));
+          // Notify Navbar
+          window.dispatchEvent(new Event('profileUpdate'));
           return updated;
         });
         // Feedback

@@ -78,7 +78,11 @@ export default function TeacherProfilePage() {
 
                 setProfile(prev => {
                     const updated = { ...prev, image: newImage };
-                    if (email) localStorage.setItem(`teacher_profile_${email}`, JSON.stringify(updated));
+                    if (email) {
+                        localStorage.setItem(`teacher_profile_${email}`, JSON.stringify(updated));
+                        // Fire a custom event to notify Navbar on the same page
+                        window.dispatchEvent(new Event('profileUpdate'));
+                    }
                     localStorage.setItem("teacher_profile", JSON.stringify(updated)); 
                     return updated;
                 });
@@ -130,12 +134,22 @@ export default function TeacherProfilePage() {
                         <article className="modern-card flex flex-col overflow-hidden rounded-[2rem] border border-white/60 bg-white/60 shadow-xl shadow-emerald-900/5 transition-opacity duration-300" style={{ opacity: profile.status === 'إجازة' ? 0.7 : 1 }}>
                             <div className="relative p-6 pb-4 border-b border-emerald-100 flex items-start justify-between gap-4">
                                 <div className="flex items-center gap-4">
-                                    <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-2xl font-black text-white shadow-lg overflow-hidden border-2 border-white">
+                                    <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-2xl font-black text-white shadow-lg overflow-hidden border-2 border-white group cursor-pointer">
                                         {profile.image ? (
                                             <img src={profile.image} alt={profile.name} className="h-full w-full object-cover" />
                                         ) : (
-                                            <span>{profile.name?.charAt(0) || "م"}</span>
+                                            <span className="group-hover:opacity-0 transition-opacity">{profile.name?.charAt(0) || "م"}</span>
                                         )}
+                                        <input 
+                                            type="file" 
+                                            accept="image/*" 
+                                            onChange={handleImageChange} 
+                                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" 
+                                            title="رفع صورة شخصية" 
+                                        />
+                                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                        </div>
                                         {profile.status === 'إجازة' && (
                                             <div className="absolute inset-0 bg-slate-900/40 flex items-center justify-center text-[10px] font-bold text-white backdrop-blur-[1px]">إجازة</div>
                                         )}

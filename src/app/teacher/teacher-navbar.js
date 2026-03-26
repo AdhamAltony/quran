@@ -8,7 +8,7 @@ export default function TeacherNavbar({ sectionTitle, links, ctaLabel, ctaHref, 
     const [session, setSession] = useState(null);
     const router = useRouter();
 
-    useEffect(() => {
+    const loadSession = () => {
         const cookies = document.cookie.split("; ");
         const roleCookie = cookies.find(c => c.startsWith("userRole="));
         if (roleCookie) {
@@ -31,13 +31,20 @@ export default function TeacherNavbar({ sectionTitle, links, ctaLabel, ctaHref, 
                     setSession(data);
                 } catch {
                     console.error("Failed to parse session");
-                    // fallback session
                     setSession({ role: "teacher", name: "معلم تجريبي", email: "teacher@gmail.com" });
                 }
             } else {
                 setSession({ role: "teacher", name: "معلم تجريبي", email: "teacher@gmail.com" });
             }
         }
+    };
+
+    useEffect(() => {
+        loadSession();
+
+        // Listen for profile updates from the same page
+        window.addEventListener('profileUpdate', loadSession);
+        return () => window.removeEventListener('profileUpdate', loadSession);
     }, []);
 
     const handleLogout = () => {
