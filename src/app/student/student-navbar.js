@@ -8,7 +8,7 @@ export default function StudentNavbar({ sectionTitle, links, ctaLabel, ctaHref }
     const [session, setSession] = useState(null);
     const router = useRouter();
 
-    useEffect(() => {
+    const loadSession = () => {
         const cookies = document.cookie.split("; ");
         const roleCookie = cookies.find(c => c.startsWith("userRole="));
         if (roleCookie) {
@@ -42,6 +42,12 @@ export default function StudentNavbar({ sectionTitle, links, ctaLabel, ctaHref }
                 setSession({ role, name: "مستخدم", email: "" });
             }
         }
+    }
+
+    useEffect(() => {
+        loadSession();
+        window.addEventListener('profileUpdate', loadSession);
+        return () => window.removeEventListener('profileUpdate', loadSession);
     }, []);
 
     const handleLogout = () => {
