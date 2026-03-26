@@ -2,58 +2,191 @@
 
 const INITIAL_USERS = [
   // Admin
-  { id: "admin-1", name: "مدير النظام", email: "admin@gmail.com", password: "123", role: "admin", course: "الإدارة", redirect: "/admin/dashboard" },
-  
-  // Teachers (1 per dept)
-  { id: "t-quran", name: "الشيخ محمود (قرآن)", email: "quran@gmail.com", password: "123", role: "teacher", course: "ركن القرآن الكريم", redirect: "/teacher/profile" },
-  { id: "t-arabic", name: "أ. فاطمة (عربية)", email: "arabic@gmail.com", password: "123", role: "teacher", course: "اللغة العربية لغير الناطقين", redirect: "/teacher/profile" },
-  { id: "t-curr", name: "أ. محمد (مناهج)", email: "curricula@gmail.com", password: "123", role: "teacher", course: "المناهج الدراسية", redirect: "/teacher/profile" },
+  { 
+    id: "ADM-001",
+    role: "admin", 
+    email: "admin@gmail.com", 
+    password: "123", 
+    name: "مدير النظام", 
+    course: "", 
+    redirect: "/admin/dashboard" 
+  },
 
-  // Students (3 per dept)
-  // Quran
-  { id: "s-q1", name: "طالب قرآن 1", email: "s_quran_1@gmail.com", password: "123", role: "student", course: "ركن القرآن الكريم", redirect: "/student/profile" },
-  { id: "s-q2", name: "طالب قرآن 2", email: "s_quran_2@gmail.com", password: "123", role: "student", course: "ركن القرآن الكريم", redirect: "/student/profile" },
-  { id: "s-q3", name: "طالب قرآن 3", email: "s_quran_3@gmail.com", password: "123", role: "student", course: "ركن القرآن الكريم", redirect: "/student/profile" },
-  // Arabic
-  { id: "s-a1", name: "طالب عربية 1", email: "s_arabic_1@gmail.com", password: "123", role: "student", course: "اللغة العربية لغير الناطقين", redirect: "/student/profile" },
-  { id: "s-a2", name: "طالب عربية 2", email: "s_arabic_2@gmail.com", password: "123", role: "student", course: "اللغة العربية لغير الناطقين", redirect: "/student/profile" },
-  { id: "s-a3", name: "طالب عربية 3", email: "s_arabic_3@gmail.com", password: "123", role: "student", course: "اللغة العربية لغير الناطقين", redirect: "/student/profile" },
-  // Curricula
-  { id: "s-c1", name: "طالب مناهج 1", email: "s_curricula_1@gmail.com", password: "123", role: "student", course: "المناهج الدراسية", redirect: "/student/profile" },
-  { id: "s-c2", name: "طالب مناهج 2", email: "s_curricula_2@gmail.com", password: "123", role: "student", course: "المناهج الدراسية", redirect: "/student/profile" },
-  { id: "s-c3", name: "طالب مناهج 3", email: "s_curricula_3@gmail.com", password: "123", role: "student", course: "المناهج الدراسية", redirect: "/student/profile" },
+  // Teachers
+  { 
+    id: "TCH-001",
+    role: "teacher", 
+    email: "quran@gmail.com", 
+    password: "123", 
+    name: "معلم ركن القرآن", 
+    course: "ركن القرآن الكريم", 
+    redirect: "/teacher/profile" 
+  },
+  { 
+    id: "TCH-002",
+    role: "teacher", 
+    email: "arabic@gmail.com", 
+    password: "123", 
+    name: "معلم العربية", 
+    course: "اللغة العربية لغير الناطقين", 
+    redirect: "/teacher/profile" 
+  },
+  { 
+    id: "TCH-003",
+    role: "teacher", 
+    email: "curricula@gmail.com", 
+    password: "123", 
+    name: "معلم المناهج الدراسية", 
+    course: "المناهج الدراسية", 
+    redirect: "/teacher/profile" 
+  },
+
+  // Students - 3 for each
+  { 
+    id: "QUR-001", 
+    role: "student", 
+    email: "student1@gmail.com", 
+    password: "123", 
+    name: "طالب ركن القرآن", 
+    course: "ركن القرآن الكريم", 
+    age: 10, 
+    level: "الجزء الأول",
+    joinDate: "15 يناير 2026",
+    redirect: "/student/profile" 
+  },
+  { 
+    id: "QUR-002", 
+    role: "student", 
+    email: "s_quran2@gmail.com", 
+    password: "123", 
+    name: "عمر ركن القرآن", 
+    course: "ركن القرآن الكريم", 
+    age: 12, 
+    level: "الجزء الثاني",
+    joinDate: "20 يناير 2026",
+    redirect: "/student/profile" 
+  },
+  { 
+    id: "QUR-003", 
+    role: "student", 
+    email: "s_quran3@gmail.com", 
+    password: "123", 
+    name: "فاطمة ركن القرآن", 
+    course: "ركن القرآن الكريم", 
+    age: 9, 
+    level: "التحفة السنية",
+    joinDate: "01 فبراير 2026",
+    redirect: "/student/profile" 
+  },
+
+  { 
+    id: "ARB-001", 
+    role: "student", 
+    email: "student2@gmail.com", 
+    password: "123", 
+    name: "طالب العربية", 
+    course: "اللغة العربية لغير الناطقين", 
+    age: 11, 
+    level: "المستوى الأول",
+    joinDate: "15 يناير 2026",
+    redirect: "/student/profile" 
+  },
+  { 
+    id: "ARB-002", 
+    role: "student", 
+    email: "s_arabic2@gmail.com", 
+    password: "123", 
+    name: "عمر العربية", 
+    course: "اللغة العربية لغير الناطقين", 
+    age: 13, 
+    level: "المستوى الثاني",
+    joinDate: "20 يناير 2026",
+    redirect: "/student/profile" 
+  },
+  { 
+    id: "ARB-003", 
+    role: "student", 
+    email: "s_arabic3@gmail.com", 
+    password: "123", 
+    name: "فاطمة العربية", 
+    course: "اللغة العربية لغير الناطقين", 
+    age: 8, 
+    level: "المستوى الأول",
+    joinDate: "01 فبراير 2026",
+    redirect: "/student/profile" 
+  },
+
+  { 
+    id: "CUR-001", 
+    role: "student", 
+    email: "student3@gmail.com", 
+    password: "123", 
+    name: "طالب المناهج", 
+    course: "المناهج الدراسية", 
+    age: 10, 
+    level: "الصف الرابع",
+    joinDate: "15 يناير 2026",
+    redirect: "/student/profile" 
+  },
+  { 
+    id: "CUR-002", 
+    role: "student", 
+    email: "s_curr2@gmail.com", 
+    password: "123", 
+    name: "عمر المناهج", 
+    course: "المناهج الدراسية", 
+    age: 12, 
+    level: "الصف السادس",
+    joinDate: "20 يناير 2026",
+    redirect: "/student/profile" 
+  },
+  { 
+    id: "CUR-003", 
+    role: "student", 
+    email: "s_curr3@gmail.com", 
+    password: "123", 
+    name: "فاطمة المناهج", 
+    course: "المناهج الدراسية", 
+    age: 9, 
+    level: "الصف الثالث",
+    joinDate: "01 فبراير 2026",
+    redirect: "/student/profile" 
+  },
 ];
 
 export const getLocalUsers = () => {
-  if (typeof window === "undefined") return INITIAL_USERS;
-  const stored = localStorage.getItem("app_users");
-  if (!stored) {
-    localStorage.setItem("app_users", JSON.stringify(INITIAL_USERS));
-    return INITIAL_USERS;
-  }
-  return JSON.parse(stored);
+    if (typeof window === "undefined") return INITIAL_USERS;
+    const stored = localStorage.getItem("app_users");
+    if (!stored) {
+        localStorage.setItem("app_users", JSON.stringify(INITIAL_USERS));
+        return INITIAL_USERS;
+    }
+    return JSON.parse(stored);
 };
 
 export const saveUser = (user) => {
-  const users = getLocalUsers();
-  const newUser = {
-    ...user,
-    id: Date.now().toString(),
-    redirect: user.role === "admin" ? "/admin/dashboard" : (user.role === "teacher" ? "/teacher/profile" : "/student/profile")
-  };
-  const updated = [...users, newUser];
-  localStorage.setItem("app_users", JSON.stringify(updated));
-  return newUser;
+    const users = getLocalUsers();
+    const newUser = {
+        ...user,
+        id: Date.now().toString(),
+        age: user.age || 10,
+        level: user.level || (user.role === "student" ? "مستوى جديد" : ""),
+        joinDate: new Date().toLocaleDateString('ar-EG', { day: 'numeric', month: 'long', year: 'numeric' }),
+        redirect: user.role === "admin" ? "/admin/dashboard" : (user.role === "teacher" ? "/teacher/profile" : "/student/profile")
+    };
+    const updated = [...users, newUser];
+    localStorage.setItem("app_users", JSON.stringify(updated));
+    return newUser;
 };
 
 export const deleteUser = (id) => {
-  const users = getLocalUsers();
-  const updated = users.filter(u => u.id !== id);
-  localStorage.setItem("app_users", JSON.stringify(updated));
+    const users = getLocalUsers();
+    const updated = users.filter(u => u.id !== id && u.email !== id);
+    localStorage.setItem("app_users", JSON.stringify(updated));
 };
 
 export const updateUser = (updatedUser) => {
-  const users = getLocalUsers();
-  const updated = users.map(u => u.id === updatedUser.id ? { ...u, ...updatedUser } : u);
-  localStorage.setItem("app_users", JSON.stringify(updated));
+    const users = getLocalUsers();
+    const updated = users.map(u => (u.id === updatedUser.id || u.email === updatedUser.email) ? { ...u, ...updatedUser } : u);
+    localStorage.setItem("app_users", JSON.stringify(updated));
 };

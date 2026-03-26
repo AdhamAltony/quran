@@ -158,10 +158,16 @@ function FooterSection({ currentYear }) {
 }
 
 export default function QuranStudentsListPage() {
+    const [students, setStudents] = useState([]);
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [currentYear, setCurrentYear] = useState(null);
 
     useEffect(() => {
+        const { getLocalUsers } = require("@/utils/local-db");
+        const allUsers = getLocalUsers();
+        // Filter students for "ركن القرآن الكريم"
+        const filtered = allUsers.filter(u => u.role === "student" && u.course === "ركن القرآن الكريم");
+        setStudents(filtered);
         setCurrentYear(new Date().getFullYear());
     }, []);
 
@@ -216,7 +222,7 @@ export default function QuranStudentsListPage() {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-emerald-100/60">
-                                    {STUDENTS_DATA.map((student, idx) => (
+                                    {students.map((student, idx) => (
                                         <tr key={student.id} className="transition-colors hover:bg-emerald-50/40">
                                             <td className="px-6 py-4 font-medium text-slate-500">{idx + 1}</td>
                                             <td className="px-6 py-4 font-bold text-emerald-950">{student.name}</td>
@@ -244,7 +250,7 @@ export default function QuranStudentsListPage() {
                                     ))}
                                 </tbody>
                             </table>
-                            {STUDENTS_DATA.length === 0 && (
+                            {students.length === 0 && (
                                 <div className="p-8 text-center text-slate-500">
                                     لا يوجد طلاب مسجلين حالياً
                                 </div>

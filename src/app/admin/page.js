@@ -43,9 +43,9 @@ export default function AdminUsersPage() {
 
     const confirmDelete = () => {
         if (userToDelete) {
-            const { deleteUser } = require("@/utils/local-db");
+            const { deleteUser, getLocalUsers } = require("@/utils/local-db");
             deleteUser(userToDelete);
-            setUsers(users.filter((user) => user.id !== userToDelete));
+            setUsers(getLocalUsers());
             setUserToDelete(null);
         }
     };
@@ -61,10 +61,9 @@ export default function AdminUsersPage() {
 
     const handleSaveEdit = (e) => {
         e.preventDefault();
-        const { updateUser } = require("@/utils/local-db");
-        const updated = { ...editingUser, ...editForm };
-        updateUser(updated);
-        setUsers(users.map((u) => (u.id === editingUser.id ? updated : u)));
+        const { updateUser, getLocalUsers } = require("@/utils/local-db");
+        updateUser({ ...editingUser, ...editForm });
+        setUsers(getLocalUsers());
         setEditingUser(null);
     };
     const openAssignModal = (user) => {
