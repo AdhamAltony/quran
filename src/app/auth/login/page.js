@@ -21,9 +21,23 @@ export default function LoginPage() {
     }
 
     const { getLocalUsers } = await import("@/utils/local-db");
-    const validUsers = await getLocalUsers();
+    const validUsers = await getLocalUsers(true);
+    const loginIdentifier = email.trim().toLowerCase();
 
-    const userByEmail = validUsers.find(u => u.email === email);
+    const userByEmail = validUsers.find((u) => {
+      const identifiers = [
+        u.email,
+        u.username,
+        u.user_name,
+        u.adminusername,
+        u.admin_username,
+        u.name,
+      ]
+        .filter(Boolean)
+        .map((value) => String(value).trim().toLowerCase());
+
+      return identifiers.includes(loginIdentifier);
+    });
 
     if (!userByEmail) {
       setError("هذا البريد غير مسجل من قبل.");

@@ -1,4 +1,19 @@
+import localFont from "next/font/local";
 import "./globals.css";
+
+const cairo = localFont({
+  src: [
+    { path: "../fonts/cairo/Cairo-300.ttf", weight: "300", style: "normal" },
+    { path: "../fonts/cairo/Cairo-400.ttf", weight: "400", style: "normal" },
+    { path: "../fonts/cairo/Cairo-500.ttf", weight: "500", style: "normal" },
+    { path: "../fonts/cairo/Cairo-600.ttf", weight: "600", style: "normal" },
+    { path: "../fonts/cairo/Cairo-700.ttf", weight: "700", style: "normal" },
+    { path: "../fonts/cairo/Cairo-800.ttf", weight: "800", style: "normal" },
+    { path: "../fonts/cairo/Cairo-900.ttf", weight: "900", style: "normal" },
+  ],
+  variable: "--font-cairo",
+  display: "swap",
+});
 
 export const metadata = {
   title: "مشاعل المعرفة | منصة تعليمية متكاملة",
@@ -9,7 +24,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
-      <body className="antialiased">{children}</body>
+      <body className={`${cairo.variable} antialiased`}>{children}</body>
     </html>
   );
 }
