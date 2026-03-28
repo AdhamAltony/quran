@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import TeacherBio from "@/components/teacher-bio";
+import { getLocalUsers, updateUser } from "@/utils/local-db";
 
 const DEPARTMENTS = [
     { id: "quran", name: "ركن القرآن الكريم" },
@@ -53,7 +54,6 @@ export default function TeacherProfilePage() {
                     currentEmail = data.email;
                     
                     // Fetch the latest central record from "app_users" (the true current database)
-                    const { getLocalUsers } = require("@/utils/local-db");
                     const allUsers = await getLocalUsers();
                     const dbUser = allUsers.find(u => u.email === currentEmail);
 
@@ -120,35 +120,48 @@ export default function TeacherProfilePage() {
         setSaved(false);
     };
 
-    const handleImageChange = (e) => {
+    const handleImageChange = async (e) => {
         const file = e.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                const newImage = reader.result;
+            try {
+                setSaved(false);
+                // 1. Upload to server
+                const formData = new FormData();
+                formData.append('file', file);
                 
-                // 1. Update state
-                setProfile(prev => ({ ...prev, image: newImage }));
+                const res = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
                 
-                // 2. Perform side effects outside the updater
-                if (profile.email) {
-                    const updated = { ...profile, image: newImage };
-                    localStorage.setItem(`teacher_profile_${profile.email}`, JSON.stringify(updated));
-                    // Notify Navbar - this will trigger loadSession in TeacherNavbar
+                const result = await res.json();
+                if (result.success) {
+                    const newImageUrl = result.url;
+                    const updatedProfile = { ...profile, image: newImageUrl, role: "teacher" };
+                    
+                    // 2. Update state
+                    setProfile(updatedProfile);
+                    
+                    // 3. Update local cache
+                    localStorage.setItem(`teacher_profile_${profile.email}`, JSON.stringify(updatedProfile));
+                    
+                    // 4. Update Supabase immediately
+                    await updateUser(updatedProfile);
+                    
+                    // Notify Navbar
                     window.dispatchEvent(new Event('profileUpdate'));
+                    
+                    setSaved(true);
+                    setTimeout(() => setSaved(false), 3000);
                 }
-
-                // Feedback
-                setSaved(true);
-                setTimeout(() => setSaved(false), 2000);
-            };
-            reader.readAsDataURL(file);
+            } catch (err) {
+                console.error("Image upload failed:", err);
+            }
         }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { updateUser } = require("@/utils/local-db");
         
         // 1. Update Central DB (Supabase via local-db adapter)
         const updatedUser = {
