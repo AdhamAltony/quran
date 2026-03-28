@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { getLocalUsers, updateUser } from "@/utils/local-db";
 
 function StatCard({ label, value, hint }) {
   return (
@@ -62,7 +63,6 @@ export default function StudentProfilePage() {
           }
 
           // Load profile data
-          const { getLocalUsers } = require("@/utils/local-db");
           const allUsers = await getLocalUsers();
           const dbUser = allUsers.find(u => u.email === currentEmail);
 
@@ -125,34 +125,48 @@ export default function StudentProfilePage() {
     setStudent(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const newImage = reader.result;
+      try {
+        setSaved(false);
+        // 1. Upload to server
+        const formData = new FormData();
+        formData.append('file', file);
         
-        // 1. Update state
-        setStudent((prev) => ({ ...prev, image: newImage }));
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData
+        });
         
-        // 2. Side effects
-        const updated = { ...student, image: newImage };
-        localStorage.setItem(`student_profile_${student.email}`, JSON.stringify(updated));
-        
-        // Notify Navbar
-        window.dispatchEvent(new Event('profileUpdate'));
-
-        // Feedback
-        setSaved(true);
-        setTimeout(() => setSaved(false), 2000);
-      };
-      reader.readAsDataURL(file);
+        const result = await res.json();
+        if (result.success) {
+          const newImageUrl = result.url;
+          const updatedStudent = { ...student, image: newImageUrl, role: "student" };
+          
+          // 2. Update state
+          setStudent(updatedStudent);
+          
+          // 3. Update local cache
+          localStorage.setItem(`student_profile_${student.email}`, JSON.stringify(updatedStudent));
+          
+          // 4. Update Supabase immediately
+          await updateUser(updatedStudent);
+          
+          // Notify Navbar
+          window.dispatchEvent(new Event('profileUpdate'));
+          
+          setSaved(true);
+          setTimeout(() => setSaved(false), 3000);
+        }
+      } catch (err) {
+        console.error("Image upload failed:", err);
+      }
     }
   };
 
   const handleSave = async (e) => {
     e.preventDefault();
-    const { updateUser } = require("@/utils/local-db");
     
     // Update Supabase
     await updateUser({
