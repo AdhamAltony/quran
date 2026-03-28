@@ -58,22 +58,12 @@ function AttendanceContent() {
                 
                 const teacherSubjects = freshTeacher.subjects || [];
 
-                // 2. Filter students by department and shared subjects (for curricula)
+                // 2. Filter students specifically assigned to THIS teacher
                 const filtered = allUsers.filter(u => {
                     if (u.role !== "student") return false;
                     
-                    const studentDept = u.department || u.course || "";
-                    const isSameDept = studentDept === deptName || studentDept.includes(deptName) || (deptName && deptName.includes(studentDept));
-                    
-                    if (!isSameDept) return false;
-                    
-                    // If curricula, both must share at least one subject
-                    if (deptName === "المناهج الدراسية") {
-                        const studentSubjects = u.subjects || u.registered_subjects || [];
-                        return studentSubjects.some(s => teacherSubjects.includes(s));
-                    }
-                    
-                    return true;
+                    const profile = JSON.parse(localStorage.getItem(`student_profile_${u.email}`) || "{}");
+                    return profile.assignedTeacherEmail === sessionData.email;
                 });
                 
                 setStudents(filtered);
